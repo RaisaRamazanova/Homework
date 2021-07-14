@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
     
     func sport() {
-        for ex in exercise {
+        for ex in exerciseArray {
             ex.start()
             ex.stop()
         }
