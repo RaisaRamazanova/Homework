@@ -9,11 +9,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var exerciseArray = [Exercise]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        createExercise(exname: .jumping)
+        sport()
     }
 
-
+    func createExercise(exname: Exercises) {
+        let newExercise = FactoryExercise.defaulteFactory.createExercise(name: exname)
+        exerciseArray.append(newExercise)
+    }
+    
+    func sport() {
+        for ex in exercise {
+            ex.start()
+            ex.stop()
+        }
+    }
 }
 
