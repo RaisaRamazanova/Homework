@@ -10,6 +10,7 @@ import UIKit
 class TabBarController: UITabBarController {
     // MARK: - Properties
     
+    // кастомный tabBar
     private let myTabBar = CustomTabBar()
     private let tabItems: [TabItem] = [.catalog, .profile, .favourite]
     private let middleButtonDiameter: CGFloat = 42
