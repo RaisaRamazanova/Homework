@@ -16,6 +16,7 @@
 		439CA13226B827E900D5A1A7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13126B827E900D5A1A7 /* TabBarController.swift */; };
 		439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */; };
 		439CA13826B836DF00D5A1A7 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13726B836DF00D5A1A7 /* TabItem.swift */; };
+		439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		439CA13126B827E900D5A1A7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		439CA13726B836DF00D5A1A7 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		439CA0FC26B8216600D5A1A7 /* OnlineStore */ = {
 			isa = PBXGroup;
 			children = (
+				439CA13926B8534800D5A1A7 /* Model */,
 				439CA13626B82AC800D5A1A7 /* View */,
 				439CA13026B8279000D5A1A7 /* Controller */,
 				439CA13326B8298400D5A1A7 /* CustomFiles */,
@@ -135,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				439CA13126B827E900D5A1A7 /* TabBarController.swift */,
+				439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -143,7 +147,6 @@
 			isa = PBXGroup;
 			children = (
 				439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */,
-				439CA13726B836DF00D5A1A7 /* TabItem.swift */,
 			);
 			path = CustomFiles;
 			sourceTree = "<group>";
@@ -153,6 +156,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		439CA13926B8534800D5A1A7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				439CA13726B836DF00D5A1A7 /* TabItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */,
 				439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */,
 				439CA13226B827E900D5A1A7 /* TabBarController.swift in Sources */,
 				439CA0FE26B8216600D5A1A7 /* AppDelegate.swift in Sources */,

@@ -17,7 +17,7 @@ enum TabItem: String, CaseIterable {
     var viewController: UIViewController {
         switch self {
             case .catalog:
-                return UIViewController()
+                return CatalogViewController()
             case .profile:
                 return UIViewController()
             case .favourite:
@@ -32,7 +32,7 @@ enum TabItem: String, CaseIterable {
             case .profile:
                 return UIImage(systemName: "person")!
             case .favourite:
-                return UIImage(systemName: "2.circle")!
+                return UIImage(systemName: "heart.fill")!
         }
     }
     
