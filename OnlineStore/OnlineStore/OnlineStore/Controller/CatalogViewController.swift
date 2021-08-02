@@ -13,7 +13,7 @@ class CatalogViewController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(<#T##view: UIView##UIView#>)
+//        view.addSubview(<#T##view: UIView##UIView#>)
         
     }
 }
