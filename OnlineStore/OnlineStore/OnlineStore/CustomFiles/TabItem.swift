@@ -2,7 +2,7 @@
 //  TabItem.swift
 //  OnlineStore
 //
-//  Created by Дмитрий Рудановский on 02.08.2021.
+//  Created by Рамазанова Раисат on 02.08.2021.
 //
 
 import UIKit
