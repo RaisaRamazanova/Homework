@@ -8,16 +8,13 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
-    var myTabBar = CustomTabBar()
+    // MARK: - Properties
     
-    let tabItems: [TabItem] = [.catalog, .profile, .favourite]
-    
+    private let myTabBar = CustomTabBar()
+    private let tabItems: [TabItem] = [.catalog, .profile, .favourite]
     private let middleButtonDiameter: CGFloat = 42
-
     private let redColor: UIColor = UIColor(red: 254.0 / 255.0, green: 116.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     private let greenColor: UIColor = UIColor(red: 102.0 / 255.0, green: 166.0 / 255.0, blue: 54.0 / 255.0, alpha: 1.0)
-
     private lazy var middleButton: UIButton = {
         let middleButton = UIButton()
         middleButton.layer.cornerRadius = middleButtonDiameter / 2
@@ -25,7 +22,6 @@ class TabBarController: UITabBarController {
         middleButton.translatesAutoresizingMaskIntoConstraints = false
         return middleButton
     }()
-    
     private lazy var heartImageView: UIImageView = {
         let heartImageView = UIImageView()
         heartImageView.image = UIImage(systemName: "person")
@@ -33,11 +29,15 @@ class TabBarController: UITabBarController {
         heartImageView.translatesAutoresizingMaskIntoConstraints = false
         return heartImageView
     }()
+
+    // MARK: - Overriden Methods
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
         makeUI()
     }
+
+    // MARK: - Private Methods
     
     @objc
     private func didPressMiddleButton() {
@@ -46,6 +46,7 @@ class TabBarController: UITabBarController {
     }
     
     private func makeUI() {
+        var controllers: [UIViewController] =  []
         self.view.addSubview(myTabBar)
         self.myTabBar.addSubview(middleButton)
         middleButton.addSubview(heartImageView)
@@ -64,9 +65,7 @@ class TabBarController: UITabBarController {
             heartImageView.centerXAnchor.constraint(equalTo: middleButton.centerXAnchor),
             heartImageView.centerYAnchor.constraint(equalTo: middleButton.centerYAnchor)
         ])
-        
-        var controllers: [UIViewController] =  []
-        
+
         for item in tabItems {
             if item != .profile {
                 let vc = item.viewController

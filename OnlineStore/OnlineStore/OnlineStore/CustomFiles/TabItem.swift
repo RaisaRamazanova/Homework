@@ -7,11 +7,12 @@
 
 import UIKit
 
-enum TabItem: String, CaseIterable {
-    
+enum TabItem: String, CaseIterable {    
     case catalog = "Каталог"
     case profile = "Профиль"
     case favourite = "Избранное"
+
+    // MARK: - Properties
     
     var viewController: UIViewController {
         switch self {
