@@ -17,6 +17,7 @@
 		439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */; };
 		439CA13826B836DF00D5A1A7 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13726B836DF00D5A1A7 /* TabItem.swift */; };
 		439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */; };
+		439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13C26B858A000D5A1A7 /* CatalogCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		439CA13726B836DF00D5A1A7 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		439CA13C26B858A000D5A1A7 /* CatalogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */,
+				439CA13C26B858A000D5A1A7 /* CatalogCell.swift */,
 			);
 			path = CustomFiles;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 			files = (
 				439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */,
 				439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */,
+				439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */,
 				439CA13226B827E900D5A1A7 /* TabBarController.swift in Sources */,
 				439CA0FE26B8216600D5A1A7 /* AppDelegate.swift in Sources */,
 				439CA13826B836DF00D5A1A7 /* TabItem.swift in Sources */,
