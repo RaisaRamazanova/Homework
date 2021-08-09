@@ -13,11 +13,11 @@
 		439CA10D26B8216A00D5A1A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 439CA10B26B8216A00D5A1A7 /* LaunchScreen.storyboard */; };
 		439CA11826B8216A00D5A1A7 /* OnlineStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA11726B8216A00D5A1A7 /* OnlineStoreTests.swift */; };
 		439CA12326B8216A00D5A1A7 /* OnlineStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA12226B8216A00D5A1A7 /* OnlineStoreUITests.swift */; };
-		439CA13226B827E900D5A1A7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13126B827E900D5A1A7 /* TabBarController.swift */; };
-		439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */; };
-		439CA13826B836DF00D5A1A7 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13726B836DF00D5A1A7 /* TabItem.swift */; };
-		439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */; };
+		439CA13226B827E900D5A1A7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13126B827E900D5A1A7 /* MainViewController.swift */; };
+		439CA13526B8299B00D5A1A7 /* TabBarCustomizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */; };
+		439CA13B26B8546100D5A1A7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13A26B8546100D5A1A7 /* FirstViewController.swift */; };
 		439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13C26B858A000D5A1A7 /* CatalogCell.swift */; };
+		BBF069A226C080BD00B6772D /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF069A126C080BD00B6772D /* CustomCollectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +50,11 @@
 		439CA11E26B8216A00D5A1A7 /* OnlineStoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnlineStoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		439CA12226B8216A00D5A1A7 /* OnlineStoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlineStoreUITests.swift; sourceTree = "<group>"; };
 		439CA12426B8216A00D5A1A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		439CA13126B827E900D5A1A7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		439CA13726B836DF00D5A1A7 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
-		439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogViewController.swift; sourceTree = "<group>"; };
+		439CA13126B827E900D5A1A7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCustomizator.swift; sourceTree = "<group>"; };
+		439CA13A26B8546100D5A1A7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		439CA13C26B858A000D5A1A7 /* CatalogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCell.swift; sourceTree = "<group>"; };
+		BBF069A126C080BD00B6772D /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,11 +105,10 @@
 		439CA0FC26B8216600D5A1A7 /* OnlineStore */ = {
 			isa = PBXGroup;
 			children = (
+				439CA13326B8298400D5A1A7 /* AppDelegate */,
 				439CA13926B8534800D5A1A7 /* Model */,
 				439CA13626B82AC800D5A1A7 /* View */,
 				439CA13026B8279000D5A1A7 /* Controller */,
-				439CA13326B8298400D5A1A7 /* CustomFiles */,
-				439CA0FD26B8216600D5A1A7 /* AppDelegate.swift */,
 				439CA10926B8216A00D5A1A7 /* Assets.xcassets */,
 				439CA10B26B8216A00D5A1A7 /* LaunchScreen.storyboard */,
 				439CA10E26B8216A00D5A1A7 /* Info.plist */,
@@ -139,24 +138,26 @@
 		439CA13026B8279000D5A1A7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				439CA13126B827E900D5A1A7 /* TabBarController.swift */,
-				439CA13A26B8546100D5A1A7 /* CatalogViewController.swift */,
+				439CA13126B827E900D5A1A7 /* MainViewController.swift */,
+				439CA13A26B8546100D5A1A7 /* FirstViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		439CA13326B8298400D5A1A7 /* CustomFiles */ = {
+		439CA13326B8298400D5A1A7 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
-				439CA13426B8299B00D5A1A7 /* CustomTabBar.swift */,
-				439CA13C26B858A000D5A1A7 /* CatalogCell.swift */,
+				439CA0FD26B8216600D5A1A7 /* AppDelegate.swift */,
 			);
-			path = CustomFiles;
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		439CA13626B82AC800D5A1A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */,
+				439CA13C26B858A000D5A1A7 /* CatalogCell.swift */,
+				BBF069A126C080BD00B6772D /* CustomCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -164,7 +165,6 @@
 		439CA13926B8534800D5A1A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				439CA13726B836DF00D5A1A7 /* TabItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -298,12 +298,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				439CA13B26B8546100D5A1A7 /* CatalogViewController.swift in Sources */,
-				439CA13526B8299B00D5A1A7 /* CustomTabBar.swift in Sources */,
+				439CA13B26B8546100D5A1A7 /* FirstViewController.swift in Sources */,
+				439CA13526B8299B00D5A1A7 /* TabBarCustomizator.swift in Sources */,
 				439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */,
-				439CA13226B827E900D5A1A7 /* TabBarController.swift in Sources */,
+				439CA13226B827E900D5A1A7 /* MainViewController.swift in Sources */,
 				439CA0FE26B8216600D5A1A7 /* AppDelegate.swift in Sources */,
-				439CA13826B836DF00D5A1A7 /* TabItem.swift in Sources */,
+				BBF069A226C080BD00B6772D /* CustomCollectionView.swift in Sources */,
 				439CA10826B8216600D5A1A7 /* OnlineStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
