@@ -23,19 +23,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        imageView.frame = CGRect(x: 0, y: 100, width: screenSize.width, height: screenSize.width + 100)
-        
         let image = UIImage(named: "g70aw")
+        imageView.frame = CGRect(x: 0, y: 100, width: screenSize.width, height: screenSize.width + 100)
         imageView.image = image
 
         cameraImageView.frame = CGRect(x: 40, y: 120, width: screenSize.width - 73, height: screenSize.width - 23)
         
         addPhotoButton.frame = CGRect(x: 40, y: 650, width: 300, height: 80)
         addPhotoButton.backgroundColor = .systemBlue
-        addPhotoButton.setTitle("Работаем",
-                        for: .normal)
-        addPhotoButton.setTitleColor(.white,
-                             for: .normal)
+        addPhotoButton.setTitle("Работаем", for: .normal)
+        addPhotoButton.setTitleColor(.white, for: .normal)
         addPhotoButton.addTarget(self, action: #selector(openTapped), for: .touchUpInside)
         
         view.addSubview(addPhotoButton)
@@ -80,9 +77,10 @@ class ViewController: UIViewController {
     func savePhoto(action: UIAlertAction) {
         let newImage = mergeImages(bottomImage: imageView, topImage: cameraImageView)
         let imageData = newImage.pngData()
-        let compresedImage = UIImage(data: imageData)
-        UIImageWriteToSavedPhotosAlbum(compresedImage!, nil, nil, nil)
-        
+        if let data = imageData {
+            let compresedImage = UIImage(data: data)
+            UIImageWriteToSavedPhotosAlbum(compresedImage!, nil, nil, nil)
+        }
         let alert = UIAlertController(title: "Сохранили", message: "Вашу картинку сохранили", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(okAction)
@@ -90,8 +88,10 @@ class ViewController: UIViewController {
     }
     
     func chooseFilter(action: UIAlertAction) {
-        let photoWithFilter = cameraImageView.image!.addFilter(filter: FilterType(rawValue: FilterType.randomFilter()) ?? .Chrome)
-        cameraImageView.image = photoWithFilter
+        if let image = cameraImageView.image {
+            let photoWithFilter = image.addFilter(filter: FilterType(rawValue: FilterType.randomFilter()) ?? .Chrome)
+            cameraImageView.image = photoWithFilter
+        }
     }
     
     @objc func openTapped() {
@@ -127,9 +127,9 @@ extension UIImage {
         let filter = CIFilter(name: filter.rawValue)
         let ciInput = CIImage(image: self)
         filter?.setValue(ciInput, forKey: "inputImage")
-        let ciOutput = filter?.outputImage
+        let ciOutput = (filter?.outputImage)!
         let ciContext = CIContext()
-        let cgImage = ciContext.createCGImage(ciOutput!, from: (ciOutput?.extent)!)
+        let cgImage = ciContext.createCGImage(ciOutput, from: ciOutput.extent)
         return UIImage(cgImage: cgImage!)
     }
 }
