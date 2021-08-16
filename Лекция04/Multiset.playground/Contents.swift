@@ -1,45 +1,57 @@
 import UIKit
 
-extension Dictionary where Value == Int {
-    
-    mutating func add(key:Key){
-        if self.keys.contains(key) {
-            self[key] = self[key]! + 1
-        } else {
-            self[key] = 1
-        }
+struct MyOwnSuperDictionary <Element: Hashable> {
+    fileprivate var contents: [Element: Int] = [:]
+
+    var uniqueCount: Int {
+      return contents.count
     }
     
-    mutating func count(for element: Key){
-        if self.keys.contains(element) {
-            print("Count of element \(element) = \(self[element]!)")
-        } else {
-            print("Count of element \(element) = 0")
-        }
+    func totalCount() -> Int {
+        return contents.values.reduce(0) { $0 + $1 }
     }
     
-    mutating func totalCount(){
-        var sum = 0
-        for key in self.keys {
-            sum = sum + self[key]!
+    func count(for element: Element) -> Int {
+        if let count = contents[element] {
+            return count
         }
-        print("Total count of elements = \(sum)")
+        return 0
+    }
+
+    mutating func add(_ member: Element, occurrences: Int = 1) {
+      precondition(occurrences > 0, "Только положительные числа")
+      if let currentCount = contents[member] {
+        contents[member] = currentCount + occurrences
+      } else {
+        contents[member] = occurrences
+      }
     }
     
-    mutating func remove(element: Key){
-        self[element] = nil
+    mutating func remove(_ member: Element, occurrences: Int = 1) {
+      guard
+        let currentCount = contents[member],
+        currentCount >= occurrences
+        else {
+          return
+      }
+
+      precondition(occurrences > 0, "Нельзя удалить")
+      if currentCount > occurrences {
+        contents[member] = currentCount - occurrences
+      } else {
+        contents.removeValue(forKey: member)
+      }
     }
 }
 
 
-
-var a:[String:Int] = [:]
-a.add(key: "c")
-a.add(key: "c")
-a.add(key: "d")
-a.totalCount()
-a.count(for: "e")
-print(a)
-a.remove(element: "c")
-print(a)
-
+var money = MyOwnSuperDictionary<String>()
+money.add("ruble")
+money.add("dollar", occurrences: 2)
+money.remove("dollar")
+money.remove("dollar")
+money.add("euro", occurrences: 5)
+money.totalCount()
+money.count(for: "dollar")
+print(money)
+print("ovations!")

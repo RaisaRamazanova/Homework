@@ -52,7 +52,9 @@ class ViewController: UIViewController {
         let areaSize = CGRect(x: 0, y: 100, width: screenSize.width, height: screenSize.width + 100)
         bottomImage.image!.draw(in: areaSize)
         
-        topImage.image!.draw(in: CGRect(x: 40, y: 120, width: screenSize.width - 73, height: screenSize.width - 23), blendMode: .normal, alpha: 1)
+        if let image = topImage.image {
+            image.draw(in: CGRect(x: 40, y: 120, width: screenSize.width - 73, height: screenSize.width - 23), blendMode: .normal, alpha: 1)
+        }
 
         let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
@@ -78,7 +80,7 @@ class ViewController: UIViewController {
     func savePhoto(action: UIAlertAction) {
         let newImage = mergeImages(bottomImage: imageView, topImage: cameraImageView)
         let imageData = newImage.pngData()
-        let compresedImage = UIImage(data: imageData!)
+        let compresedImage = UIImage(data: imageData)
         UIImageWriteToSavedPhotosAlbum(compresedImage!, nil, nil, nil)
         
         let alert = UIAlertController(title: "Сохранили", message: "Вашу картинку сохранили", preferredStyle: .alert)

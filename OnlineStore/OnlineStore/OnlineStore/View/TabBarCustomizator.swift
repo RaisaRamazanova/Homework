@@ -17,6 +17,7 @@ class TabBarCustomizator {
     private let button = UIView()
     private let buttonRadius: CGFloat = 29
     private let imgButtonIcon = UIImageView(image: UIImage(systemName: "book", withConfiguration: UIImage.SymbolConfiguration(pointSize: 25, weight: .medium)))
+    var isButtonMovedUp = false
     
     // MARK: - Methods
     func customize() {
@@ -65,7 +66,7 @@ class TabBarCustomizator {
         
         let circle = CAShapeLayer()
         circle.path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: 2 * buttonRadius, height: 2 * buttonRadius), cornerRadius: buttonRadius).cgPath
-        circle.fillColor = UIColor.systemRed.cgColor
+        circle.fillColor = UIColor.systemGray.cgColor
         circle.position = CGPoint(x: imgButtonIcon.center.x - buttonRadius, y: imgButtonIcon.center.y - buttonRadius)
         circle.shadowColor = UIColor.black.withAlphaComponent(0.3).cgColor
         circle.shadowRadius = 5
@@ -77,4 +78,33 @@ class TabBarCustomizator {
         button.addSubview(imgButtonIcon)
         tabBar.addSubview(button)
     }
+    
+    private func changeButtonIcon() {
+        if isButtonMovedUp {
+            button.tintColor = .systemYellow
+        } else {
+            button.tintColor = .white
+        }
+    }
+    
+    func moveButton() {
+            UIView.animate(withDuration: 0.5,
+                           delay: 0.0,
+                           options: [],
+                           animations: { [weak self] in
+                            guard let self = self else { return }
+                            if self.isButtonMovedUp {
+                                self.button.center.y += self.buttonRadius * 0.2
+                                self.isButtonMovedUp.toggle()
+                            } else {
+                                self.button.center.y -= self.buttonRadius * 0.2
+                                self.isButtonMovedUp.toggle()
+                            }
+                            self.button.tintColor = self.isButtonMovedUp ? .white : .systemYellow },
+                                                   completion: { _ in
+                                                    self.changeButtonIcon() }
+            )
+        }
+    
+    
 }

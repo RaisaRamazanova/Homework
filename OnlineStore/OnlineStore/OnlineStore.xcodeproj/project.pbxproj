@@ -16,8 +16,9 @@
 		439CA13226B827E900D5A1A7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13126B827E900D5A1A7 /* MainViewController.swift */; };
 		439CA13526B8299B00D5A1A7 /* TabBarCustomizator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */; };
 		439CA13B26B8546100D5A1A7 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13A26B8546100D5A1A7 /* FirstViewController.swift */; };
-		439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13C26B858A000D5A1A7 /* CatalogCell.swift */; };
-		BBF069A226C080BD00B6772D /* CustomCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF069A126C080BD00B6772D /* CustomCollectionView.swift */; };
+		439CA13D26B858A000D5A1A7 /* CustomLowerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439CA13C26B858A000D5A1A7 /* CustomLowerCell.swift */; };
+		BBF069A226C080BD00B6772D /* CustomTopCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF069A126C080BD00B6772D /* CustomTopCell.swift */; };
+		BBF069A826C161D400B6772D /* CustomCellFirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF069A726C161D400B6772D /* CustomCellFirstController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +54,9 @@
 		439CA13126B827E900D5A1A7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCustomizator.swift; sourceTree = "<group>"; };
 		439CA13A26B8546100D5A1A7 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		439CA13C26B858A000D5A1A7 /* CatalogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalogCell.swift; sourceTree = "<group>"; };
-		BBF069A126C080BD00B6772D /* CustomCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionView.swift; sourceTree = "<group>"; };
+		439CA13C26B858A000D5A1A7 /* CustomLowerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLowerCell.swift; sourceTree = "<group>"; };
+		BBF069A126C080BD00B6772D /* CustomTopCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTopCell.swift; sourceTree = "<group>"; };
+		BBF069A726C161D400B6772D /* CustomCellFirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellFirstController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				439CA13426B8299B00D5A1A7 /* TabBarCustomizator.swift */,
-				439CA13C26B858A000D5A1A7 /* CatalogCell.swift */,
-				BBF069A126C080BD00B6772D /* CustomCollectionView.swift */,
+				439CA13C26B858A000D5A1A7 /* CustomLowerCell.swift */,
+				BBF069A126C080BD00B6772D /* CustomTopCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +167,7 @@
 		439CA13926B8534800D5A1A7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BBF069A726C161D400B6772D /* CustomCellFirstController.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,11 +302,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				439CA13B26B8546100D5A1A7 /* FirstViewController.swift in Sources */,
+				BBF069A826C161D400B6772D /* CustomCellFirstController.swift in Sources */,
 				439CA13526B8299B00D5A1A7 /* TabBarCustomizator.swift in Sources */,
-				439CA13D26B858A000D5A1A7 /* CatalogCell.swift in Sources */,
+				439CA13D26B858A000D5A1A7 /* CustomLowerCell.swift in Sources */,
 				439CA13226B827E900D5A1A7 /* MainViewController.swift in Sources */,
 				439CA0FE26B8216600D5A1A7 /* AppDelegate.swift in Sources */,
-				BBF069A226C080BD00B6772D /* CustomCollectionView.swift in Sources */,
+				BBF069A226C080BD00B6772D /* CustomTopCell.swift in Sources */,
 				439CA10826B8216600D5A1A7 /* OnlineStore.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "whatsapp_image_2021-06-01_at_165424ormr.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
