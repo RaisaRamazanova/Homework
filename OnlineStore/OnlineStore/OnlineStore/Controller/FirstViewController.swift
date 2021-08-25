@@ -9,6 +9,8 @@ import UIKit
 
 class FirstViewController : UIViewController, UISearchBarDelegate {
     
+    
+    var a = 1
     // MARK: - Properties
     let screenSize = UIScreen.main.bounds
     var filteredData: [String]!
