@@ -9,7 +9,6 @@ import UIKit
 
 class CustomLowerCell: UICollectionViewCell {
     
-
     var data: CustomDataClothes? {
         didSet {
             guard let data = data else { return }
@@ -37,11 +36,6 @@ class CustomLowerCell: UICollectionViewCell {
         clothesLabel.font = .systemFont(ofSize: 12)
         clothesPrice.frame = CGRect(x: 10, y: 210, width: 160, height: 20)
         clothesPrice.textColor = .white
-//
-//        clothesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0).isActive = true
-//        clothesLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10).isActive = true
-//        clothesLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: 0).isActive = true
-//        clothesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 0).isActive = true
         
         contentView.addSubview(bg)
         contentView.addSubview(clothesLabel)
@@ -51,7 +45,6 @@ class CustomLowerCell: UICollectionViewCell {
         bg.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         bg.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
         bg.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -70).isActive = true
-
     }
     
     required init?(coder aDecoder: NSCoder) {

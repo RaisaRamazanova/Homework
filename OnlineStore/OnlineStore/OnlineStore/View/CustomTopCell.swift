@@ -13,7 +13,6 @@ class CustomTopCell: UICollectionViewCell {
         didSet {
             guard let data = data else { return }
             bg.image = data.backgroundImage
-            
         }
     }
     
@@ -22,15 +21,13 @@ class CustomTopCell: UICollectionViewCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-                iv.layer.cornerRadius = 12
+        iv.layer.cornerRadius = 12
         return iv
     }()
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
-
         contentView.addSubview(bg)
-
         bg.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         bg.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
         bg.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true

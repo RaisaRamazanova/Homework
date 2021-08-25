@@ -10,15 +10,14 @@ import UIKit
 class TabBarController: UITabBarController {
     // MARK: - Properties
 
-    var myTabBar = TabBarCustomizator()
 
     // MARK: - Overriden Methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        myTabBar.tabBar = tabBar
-        myTabBar.customize()
         makeUI()
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Pop"
     }
 
     // MARK: - Private Methods
@@ -30,12 +29,13 @@ class TabBarController: UITabBarController {
         firstVC.tabBarItem.image = UIImage(systemName: "person")
 
         let middleVC = FirstViewController()
+        middleVC.tabBarItem.title = "Каталог"
+        middleVC.tabBarItem.image = UIImage(systemName: "book")
 
         let secondVC = UIViewController()
         secondVC.view.backgroundColor = .blue
-        secondVC.tabBarItem.title = "Избранное"
-        secondVC.tabBarItem.image = UIImage(systemName: "heart")
-
-        viewControllers = [firstVC, middleVC, secondVC]
+        secondVC.tabBarItem.title = "Корзина"
+        secondVC.tabBarItem.image = UIImage(systemName: "bag")
+        viewControllers = [middleVC, firstVC, secondVC]
     }
 }
