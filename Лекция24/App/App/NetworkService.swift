@@ -34,37 +34,49 @@ class NetworkService {
         let urls = [firstURL, secondURL, thirdURL, fourthURL]
         
         // в этот массив запишите итоговые картинки
+
         var results = [UIImage]()
+        let group = DispatchGroup()
+        group.enter()
         for oneUrl in urls {
             var image = UIImage()
             if let data = try? Data(contentsOf: oneUrl) {
-                image = UIImage(data: data)!
-                results.append(image)
+                DispatchQueue.main.async {
+                    image = UIImage(data: data)!
+                    results.append(image)
+                }
+            }
+        }
+        group.leave()
+        
+//        Соедините картинки в одну с помощью
+        
+        group.notify(queue: .main) {
+            if let merged = ImagesServices.image(byCombining: results) {
+                    completion(.success(merged))
             }
         }
 
-//        Соедините картинки в одну с помощью
-        if let merged = ImagesServices.image(byCombining: results) {
-                completion(.success(merged))
-            }
-
     }
     
-    // MARK:- Второе задани
+    // MARK:- Второе задание
     
     ///  Здесь задание такое:
     ///  У вас есть keyURL, который приведёт вас к ссылке на клад.
     ///  Верните картинку с этим кладом в completion
     public func loadQuiz(completion: @escaping(Result<UIImage, Error>) -> ()) {
         let keyURL = URL(string: "https://sberschool-c264c.firebaseio.com/enigma.json?avvrdd_token=AIzaSyDqbtGbRFETl2NjHgdxeOGj6UyS3bDiO-Y")!
-
         if let data = try? Data(contentsOf: keyURL) {
             let string = String(data: data, encoding: .utf8)!
             let str = string.replacingOccurrences(of: "\"", with: "")
             if let url = URL(string: str) {
-                if let datas = try? Data(contentsOf: url) {
-                    if let image = UIImage(data: datas) {
-                        completion(.success(image))
+                DispatchQueue.global().async {
+                    if let datas = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            if let image = UIImage(data: datas) {
+                                completion(.success(image))
+                            }
+                        }
                     }
                 }
             } else {print("could not open url, it was nil")}
