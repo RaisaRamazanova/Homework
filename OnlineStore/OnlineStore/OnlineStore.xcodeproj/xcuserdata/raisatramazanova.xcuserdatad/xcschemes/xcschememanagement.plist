@@ -4,10 +4,38 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>OnlineStore.xcscheme_^#shared#^_</key>
+		<key>OnlineStore 1.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>OnlineStore.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>OnlineStoreUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>439CA0F926B8216600D5A1A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>439CA11226B8216A00D5A1A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>439CA11D26B8216A00D5A1A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

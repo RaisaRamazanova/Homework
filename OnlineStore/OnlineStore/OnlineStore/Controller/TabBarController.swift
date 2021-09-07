@@ -16,26 +16,24 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         makeUI()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.title = "Pop"
     }
 
     // MARK: - Private Methods
 
     private func makeUI() {
-        let firstVC = UIViewController()
-        firstVC.view.backgroundColor = .yellow
-        firstVC.tabBarItem.title = "Профиль"
-        firstVC.tabBarItem.image = UIImage(systemName: "person")
+        let secondVC = UINavigationController.init(rootViewController: SecondViewController())
+        secondVC.view.backgroundColor = .white
+        secondVC.tabBarItem.title = "Профиль"
+        secondVC.tabBarItem.image = UIImage(systemName: "person")
 
-        let middleVC = FirstViewController()
-        middleVC.tabBarItem.title = "Каталог"
-        middleVC.tabBarItem.image = UIImage(systemName: "book")
+        let firstVC = UINavigationController.init(rootViewController: FirstViewController())
+        firstVC.tabBarItem.title = "Каталог"
+        firstVC.tabBarItem.image = UIImage(systemName: "book")
 
-        let secondVC = UIViewController()
-        secondVC.view.backgroundColor = .blue
-        secondVC.tabBarItem.title = "Корзина"
-        secondVC.tabBarItem.image = UIImage(systemName: "bag")
-        viewControllers = [middleVC, firstVC, secondVC]
+        let thirdVC = UINavigationController.init(rootViewController: ThirdViewController())
+        thirdVC.view.backgroundColor = .white
+        thirdVC.tabBarItem.title = "Корзина"
+        thirdVC.tabBarItem.image = UIImage(systemName: "bag")
+        viewControllers = [firstVC, secondVC, thirdVC]
     }
 }
