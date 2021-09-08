@@ -117,8 +117,6 @@ class DetailViewController: UIViewController {
         scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         setupLayout()
-        
-        
     }
     
     // MARK: - Methods
@@ -166,8 +164,9 @@ class DetailViewController: UIViewController {
             buyButton.centerXAnchor.constraint(equalTo: scrollViewContainer.centerXAnchor),
             buyButton.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 50),
             buyButton.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor, constant: -50),
+            buyButton.heightAnchor.constraint(equalToConstant: 50),
             
-            aboutClothesLabel.topAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: 10),
+            aboutClothesLabel.topAnchor.constraint(equalTo: buyButton.bottomAnchor, constant: 30),
             aboutClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
             
             seasonOfClothesLabel.topAnchor.constraint(equalTo: aboutClothesLabel.bottomAnchor, constant: 10),

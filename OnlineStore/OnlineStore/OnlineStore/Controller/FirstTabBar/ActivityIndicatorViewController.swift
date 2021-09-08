@@ -15,14 +15,14 @@ protocol ActivityIndicatorProtocol {
 
 final class ActivityIndicatorViewController: UIViewController, ActivityIndicatorProtocol {
         
-    private var activityIndicator = UIActivityIndicatorView()
+    private var activityIndicator = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.alpha = 0.7
+        view.alpha = 1
         view.addSubview(activityIndicator)
         activityIndicator.center = view.center
-        activityIndicator.color = .white
+        activityIndicator.color = .gray
         activityIndicator.startAnimating()
     }
     

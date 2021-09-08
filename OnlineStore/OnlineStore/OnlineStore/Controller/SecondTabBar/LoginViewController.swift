@@ -15,16 +15,16 @@ class LoginViewController: UIViewController {
         let cl = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 30))
         cl.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
         cl.text = "Привет"
-        cl.font = UIFont.boldSystemFont(ofSize: 40)
+        cl.font = UIFont.boldSystemFont(ofSize: 30)
         cl.textAlignment = .left
         return cl
     }()
     
     private let shinyRegisterLabel : UILabel = {
         let cl = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 30))
-        cl.textColor = .gray
+        cl.textColor = .white
         cl.text = "Привет"
-        cl.font = UIFont.boldSystemFont(ofSize: 40)
+        cl.font = UIFont.boldSystemFont(ofSize: 30)
         cl.textAlignment = .left
         return cl
     }()
@@ -37,6 +37,15 @@ class LoginViewController: UIViewController {
         button.addShadow()
         button.layer.cornerRadius = 6
         return button
+    }()
+    
+    private var imageOfPerson: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "Профиль")
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
     }()
     
     // MARK: - init
@@ -58,7 +67,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        self.view.backgroundColor = UIColor(#colorLiteral(red: 0.8956577182, green: 0.8958080411, blue: 0.8956379294, alpha: 1))
+        self.view.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         unloginButton.addTarget(self, action: #selector(unloginUser), for: .touchUpInside)
         
     }
@@ -90,7 +99,7 @@ class LoginViewController: UIViewController {
         animation.duration = 2
         animation.fromValue = -view.frame.width
         animation.toValue = view.frame.width
-        animation.repeatCount = 10
+        animation.repeatCount = Float.infinity
         
         gradientLayer.add(animation, forKey: "key")
     }
@@ -103,6 +112,7 @@ class LoginViewController: UIViewController {
     // создаем constraint и добавляем Subview
     private func setupLayout() {
         [registerLabel,
+         imageOfPerson,
          shinyRegisterLabel,
          unloginButton].forEach {
             view.addSubview($0)
@@ -116,10 +126,16 @@ class LoginViewController: UIViewController {
             shinyRegisterLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
             shinyRegisterLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            unloginButton.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 30),
+            imageOfPerson.topAnchor.constraint(equalTo: registerLabel.bottomAnchor , constant: 20),
+            imageOfPerson.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageOfPerson.heightAnchor.constraint(equalToConstant: 200),
+            imageOfPerson.widthAnchor.constraint(equalToConstant: 200),
+            
+            unloginButton.topAnchor.constraint(equalTo: imageOfPerson.bottomAnchor, constant: 100),
             unloginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             unloginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
             unloginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
+            unloginButton.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 }

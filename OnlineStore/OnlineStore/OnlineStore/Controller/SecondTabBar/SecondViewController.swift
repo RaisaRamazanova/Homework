@@ -67,7 +67,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }()
     
     private var loginButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 40))
+        let button = UIButton()
         button.backgroundColor = UIColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
         button.setTitle("Войти", for: .normal)
         button.tintColor = .black
@@ -77,7 +77,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }()
 
     private var registrationButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 40))
+        let button = UIButton()
         button.backgroundColor = UIColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
         button.setTitle("Регистрация", for: .normal)
         button.tintColor = .black
@@ -183,15 +183,14 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
             loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             loginTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 30),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            
             loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
             loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
             
@@ -200,9 +199,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
             registrationButton.topAnchor.constraint(equalTo: alternativeLabel.bottomAnchor, constant: 30),
             registrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            registrationButton.heightAnchor.constraint(equalToConstant: 40),
             registrationButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
             registrationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
         ])
     }
 }
-

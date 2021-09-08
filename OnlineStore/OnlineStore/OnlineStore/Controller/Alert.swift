@@ -27,4 +27,3 @@ final class Alert {
         vc.present(alert, animated: true)
     }
 }
-

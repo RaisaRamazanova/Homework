@@ -17,10 +17,8 @@ struct JsonCellViewModel {
     var season: String = ""
 }
 
-
 class JsonViewModel: NSObject {
     // MARK: - properties
-    
     
     var indexDetailVCTitle: Int = 0
     private var jsonService: JsonServiceProtocol

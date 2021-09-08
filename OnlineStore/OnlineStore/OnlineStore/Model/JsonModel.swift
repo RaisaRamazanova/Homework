@@ -20,4 +20,3 @@ struct JsonData: Codable {
     var gender: String
     var season: String
 }
-//

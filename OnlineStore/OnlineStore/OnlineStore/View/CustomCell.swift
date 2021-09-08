@@ -16,7 +16,6 @@ class CustomCell: UICollectionViewCell {
             clothesDescription.text = cellViewModel?.description
             clothesPrice.text = cellViewModel?.price
             imageOfClothes.image = cellViewModel?.image?.image
-            self.activityIndicator.turnOff()
         }
     }
 
@@ -51,14 +50,7 @@ class CustomCell: UICollectionViewCell {
         iv.clipsToBounds = true
         return iv
     }()
-    
-    private lazy var activityIndicator: UIActivityIndicatorView = {
-        let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.turnOn()
-        return indicator
-    }()
 
-    
     // MARK: - override function
     
     override func awakeFromNib() {
@@ -88,8 +80,7 @@ class CustomCell: UICollectionViewCell {
         [imageOfClothes,
          clothesLabel,
          clothesDescription,
-         clothesPrice,
-         activityIndicator].forEach {
+         clothesPrice].forEach {
             contentView.addSubview($0)
             $0.toAutoLayout()
         }
@@ -110,9 +101,6 @@ class CustomCell: UICollectionViewCell {
             clothesDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor , constant: -5),
             clothesDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             clothesDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-
-            activityIndicator.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            activityIndicator.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }
 }

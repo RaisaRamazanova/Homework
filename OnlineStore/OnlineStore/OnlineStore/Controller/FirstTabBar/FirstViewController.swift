@@ -8,14 +8,15 @@
 import UIKit
 
 
-class FirstViewController : UIViewController, UISearchBarDelegate {
+class FirstViewController : UIViewController {
     
     // MARK: - Properties
     let screenSize = UIScreen.main.bounds
     lazy var viewModel = {JsonViewModel()}()
     let layout = UICollectionViewFlowLayout()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    private lazy var searchBar = UISearchBar()
+    lazy var searchBar = UISearchBar()
+    private let refreshControl = UIRefreshControl()
 
     // MARK: - Overriden Methods
     
@@ -23,12 +24,14 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.navigationController?.navigationBar.tintColor = .black
+        hideKeyboardWhenTappedAround()
         
         // добавим заголовок в navigationBar и добавим под ним searchBar
         initNavigation()
         initSearchBar()
         initTableView()
         setupLayout()
+        ActivityIndicatorViewController.startAnimating(in: self)
         initViewModel()
     }
     
@@ -39,8 +42,10 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
         viewModel.reloadCollectionView = { [weak self] in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
+                ActivityIndicatorViewController.stopAnimating(in: self ?? FirstViewController())
             }
         }
+        
     }
     
     // инициализируем  tableView
@@ -49,7 +54,6 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor(#colorLiteral(red: 0.8956577182, green: 0.8958080411, blue: 0.8956379294, alpha: 1))
         collectionView.register(CustomCell.self, forCellWithReuseIdentifier: String(describing: CustomCell.self))
-        view.addSubview(collectionView)
     }
     
     // задаем имя navigationBar и другие параметры
@@ -66,24 +70,26 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
         searchBar.isTranslucent = false
         searchBar.delegate = self
         searchBar.barTintColor = UIColor.white
-        view.addSubview(searchBar)
     }
     
     // задаем сonstraint для searchBar и tableView
     private func setupLayout() {
+        print(searchBar.frame.height)
         [collectionView,
-         searchBar].forEach { $0.toAutoLayout() }
+         searchBar].forEach {
+            view.addSubview($0)
+            $0.toAutoLayout()
+        }
         NSLayoutConstraint.activate([
             searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             searchBar.bottomAnchor.constraint(equalTo: collectionView.topAnchor),
             
+            collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            collectionView.heightAnchor.constraint(equalToConstant: view.frame.height - 170)
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
-

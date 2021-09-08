@@ -25,6 +25,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
+        textField.layer.borderColor = CGColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 1.0
         textField.attributedPlaceholder = NSAttributedString(string: "Ваше имя",
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -42,6 +45,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
+        textField.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+        textField.layer.borderColor = CGColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 1.0
         textField.attributedPlaceholder = NSAttributedString(string: "Логин",
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.borderStyle = UITextField.BorderStyle.roundedRect
@@ -59,6 +66,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
+        textField.layer.borderColor = CGColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 1.0
         textField.attributedPlaceholder = NSAttributedString(string: "Пароль",
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.isSecureTextEntry = true 
@@ -77,6 +87,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
+        textField.layer.borderColor = CGColor(#colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1))
+        textField.layer.cornerRadius = 6
+        textField.layer.borderWidth = 1.0
         textField.attributedPlaceholder = NSAttributedString(string: "Повторите пароль",
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.isSecureTextEntry = true
@@ -94,11 +107,20 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     private var loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 40))
         button.backgroundColor = UIColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-        button.setTitle("Войти", for: .normal)
+        button.setTitle("Зарегистрироваться", for: .normal)
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
         return button
+    }()
+    
+    private var imageOfPerson: UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "Личный кабинет")
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
     }()
     
     // MARK: - override function
@@ -106,7 +128,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
-        view.backgroundColor = UIColor(#colorLiteral(red: 0.8956577182, green: 0.8958080411, blue: 0.8956379294, alpha: 1))
+        view.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         navigationController?.navigationBar.barTintColor = UIColor(#colorLiteral(red: 0.5601426959, green: 0.8468149304, blue: 0.9041565061, alpha: 1))
         userName.delegate = self
         userName.tag = 0
@@ -149,12 +171,19 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
          loginTextField,
          passwordTextField,
          secondPassword,
-         loginButton].forEach {
+         loginButton,
+         imageOfPerson].forEach {
             view.addSubview($0)
             $0.toAutoLayout()
         }
         NSLayoutConstraint.activate([
-            registerLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 120),
+            
+            imageOfPerson.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            imageOfPerson.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageOfPerson.heightAnchor.constraint(equalToConstant: 100),
+            imageOfPerson.widthAnchor.constraint(equalToConstant: 100),
+            
+            registerLabel.topAnchor.constraint(equalTo: imageOfPerson.bottomAnchor, constant: 5),
             registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             userName.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 30),
@@ -180,6 +209,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             
             loginButton.topAnchor.constraint(equalTo: secondPassword.bottomAnchor, constant: 30),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
             loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
         ])

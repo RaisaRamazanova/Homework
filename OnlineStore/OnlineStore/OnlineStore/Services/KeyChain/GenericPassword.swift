@@ -22,4 +22,3 @@ extension GenericPassword: SecureStoreQueryable {
         return query
     }
 }
-
