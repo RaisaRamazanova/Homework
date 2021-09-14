@@ -42,7 +42,6 @@ class ThirdViewController: UIViewController {
         initNavigation()
         initTableView()
         setupLayout()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Clear", style: .done, target: self, action: #selector(clear))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +58,28 @@ class ThirdViewController: UIViewController {
     
     // MARK: - functions
     
-    @objc func clear(){
+    func write(data: CoreDataCellViewModel) {
+        writeContext.performAndWait {
+            let request = NSFetchRequest<Entity>(entityName: "Entity")
+            do {
+                let result = try request.execute()
+                for item in result {
+                    if (item.clothesDescription! + " " + item.title!) == (data.description + " " + data.title) {
+                        let clothesCount = Int(item.count)
+                        clearClothes(title: item.title!)
+                        if clothesCount > 1 {
+                            saveData(count: clothesCount - 1, for: data)
+                        }
+                        self.viewWillAppear(true)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
+    func clearClothes(title: String) {
         let context = stack.conainer.viewContext
         context.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
@@ -67,14 +87,30 @@ class ThirdViewController: UIViewController {
             do {
                 let result = try request.execute()
                 for item in result {
+                    if item.title == title {
                         context.delete(item)
                         try? context.save()
+                    }
                 }
             } catch {
                 print(error)
             }
         }
-        self.viewWillAppear(true)
+    }
+    
+    func saveData(count: Int, for data: CoreDataCellViewModel) {
+        let writeContext = stack.conainer.viewContext
+        writeContext.performAndWait{
+            let clothes = Entity(context: writeContext)
+            clothes.title = data.title
+            clothes.clothesDescription = data.description
+            clothes.price = data.price
+            clothes.season = data.season
+            clothes.gender = data.gender
+            clothes.url = data.urlOfImage
+            clothes.count = Int16(count)
+            try? writeContext.save()
+        }
     }
     
     // инициализируем  tableView
@@ -89,7 +125,7 @@ class ThirdViewController: UIViewController {
     private func initNavigation() {
         navigationController?.navigationBar.isTranslucent = false
         navigationItem.title = "Корзина"
-        navigationController?.navigationBar.barTintColor = UIColor(#colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1))
+        navigationController?.navigationBar.barTintColor = UIColor(#colorLiteral(red: 0.5601426959, green: 0.8468149304, blue: 0.9041565061, alpha: 1))
     }
     
     func initViewModel() {

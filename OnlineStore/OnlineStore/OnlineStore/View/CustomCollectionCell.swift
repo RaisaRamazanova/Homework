@@ -14,7 +14,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
             setupLayout()
             clothesLabel.text = cellViewModel?.title
             clothesDescription.text = cellViewModel?.description
-            clothesPrice.text = cellViewModel?.price
+            clothesPrice.text = cellViewModel!.price + " ₽"
             imageOfClothes.image = cellViewModel?.image?.image
         }
     }

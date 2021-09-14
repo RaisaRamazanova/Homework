@@ -85,7 +85,7 @@ class DetailViewController: UIViewController {
         return genderOfClothesLabel
     }()
     
-    private var urlOfImage =  "https://a.lmcdn.ru/product/I/X/IX001XW0127H_14657320_1_v1.jpeg"
+    private var urlOfImage = "https://a.lmcdn.ru/product/I/X/IX001XW0127H_14657320_1_v1.jpeg"
     
     
     // MARK: - init
@@ -193,7 +193,7 @@ class DetailViewController: UIViewController {
     func createCellModel(data: JsonCellViewModel){
         titleOfClothes.text = data.title
         descriptionOfClothes.text = data.description
-        priceOfClothes.text = data.price
+        priceOfClothes.text = data.price + " ₽"
         seasonOfClothesLabel.text = "Сезон: \(data.season)"
         genderOfClothesLabel.text = "Для: \(data.gender)"
         imageOfClothes.image = data.image?.image
@@ -218,7 +218,7 @@ class DetailViewController: UIViewController {
             imageOfClothes.topAnchor.constraint(equalTo: scrollViewContainer.topAnchor, constant: 0),
             imageOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
             imageOfClothes.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
-            imageOfClothes.heightAnchor.constraint(equalToConstant: 400),
+            imageOfClothes.heightAnchor.constraint(equalToConstant: 500),
             
             titleOfClothes.topAnchor.constraint(equalTo: imageOfClothes.bottomAnchor, constant: 10),
             titleOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),

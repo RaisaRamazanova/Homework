@@ -13,7 +13,6 @@ typealias JsonDatas =  JsonData.Type
 
 struct JsonData: Codable {
     var title: String
-    var id: Int
     var url: String
     var price: String
     var description: String

@@ -48,19 +48,14 @@ class JsonViewModel: NSObject {
     
     func createCellModel(datas: JsonData) -> JsonCellViewModel {
         let title = datas.title
-        let id = datas.id
-
         let image = UIImageView()
-        
         image.image = self.loadImage(url: (URL(string: datas.url) ?? URL(string: "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"))!)
-        
         let price = datas.price
         let description = datas.description
         let gender = datas.gender
         let season = datas.season
         let url = datas.url
-
-        return JsonCellViewModel(title: title, id: id, image: image, price: price, description: description, gender: gender, season: season, urlOfImage: url)
+        return JsonCellViewModel(title: title, image: image, price: price, description: description, gender: gender, season: season, urlOfImage: url)
     }
     
     func loadImage(url: URL) -> UIImage {

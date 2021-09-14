@@ -158,7 +158,6 @@
 				BBEAD57726E9690500642AF2 /* CoreData */,
 				BBEAD56126E5562F00642AF2 /* MainViewModel */,
 				BBA05C8E26DD7F83001070CD /* Services */,
-				439CA13326B8298400D5A1A7 /* AppDelegate */,
 				439CA13926B8534800D5A1A7 /* Model */,
 				439CA13626B82AC800D5A1A7 /* View */,
 				BBEAD55826E413CB00642AF2 /* Helpers */,
@@ -241,6 +240,7 @@
 		BBEAD55826E413CB00642AF2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				439CA13326B8298400D5A1A7 /* AppDelegate */,
 				BBEAD55926E413DB00642AF2 /* ExtensionView.swift */,
 				BBEAD57C26E96BBB00642AF2 /* ExtensionViewController.swift */,
 				BBEAD55B26E414FC00642AF2 /* ExtensionCollectionView.swift */,

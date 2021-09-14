@@ -9,7 +9,6 @@ import UIKit
 
 struct JsonCellViewModel {
     var title: String = ""
-    var id: Int = 0
     var image: UIImageView?
     var price: String = ""
     var description: String = ""
