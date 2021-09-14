@@ -15,7 +15,7 @@ extension FirstViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.jsonCellViewModels.count 
+        return viewModel.jsonCellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -24,7 +24,7 @@ extension FirstViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CustomCell.self), for: indexPath) as! CustomCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CustomCollectionViewCell.self), for: indexPath) as! CustomCollectionViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
         cell.cellViewModel = cellVM
         cell.backgroundColor = .white
@@ -32,24 +32,3 @@ extension FirstViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
-extension FirstViewController: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar){
-        self.searchBar.endEditing(true)
-    }
-}
-
-extension UIViewController {
-
-    func hideKeyboardWhenTappedAround() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard(_:)))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-        if let nav = self.navigationController {
-            nav.view.endEditing(true)
-        }
-    }
- }

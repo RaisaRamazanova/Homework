@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailViewController: UIViewController {
     
@@ -33,10 +34,11 @@ class DetailViewController: UIViewController {
     private var buyButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = UIColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
-        button.setTitle("Купить", for: .normal)
+        button.setTitle("Добавить в корзину", for: .normal)
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
+        button.addTarget(self, action: #selector(write), for: .touchUpInside )
         return button
     }()
     
@@ -82,7 +84,10 @@ class DetailViewController: UIViewController {
         genderOfClothesLabel.font = UIFont.systemFont(ofSize: 14)
         return genderOfClothesLabel
     }()
-
+    
+    private var urlOfImage =  "https://a.lmcdn.ru/product/I/X/IX001XW0127H_14657320_1_v1.jpeg"
+    
+    
     // MARK: - init
     
     init(forClothes: JsonCellViewModel) {
@@ -112,23 +117,87 @@ class DetailViewController: UIViewController {
         scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-        // this is important for scrolling
+
         scrollViewContainer.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 50).isActive = true
         scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         setupLayout()
     }
     
+    
+    private let stack = NewStack.shared
+    lazy var writeContext = stack.conainer.viewContext
+    
     // MARK: - Methods
 
+    @objc func write() {
+        writeContext.performAndWait {
+            let request = NSFetchRequest<Entity>(entityName: "Entity")
+            do {
+                let result = try request.execute()
+                var emptyData = true
+                var isNotInData = true
+                for item in result {
+                    emptyData = false
+                    if (item.clothesDescription! + item.title!) == (descriptionOfClothes.text! + titleOfClothes.text!) {
+                        let clothesCount = Int(item.count)
+                        clear(title: item.title!)
+                        saveData(count: clothesCount + 1)
+                        isNotInData = false
+                    }
+                }
+                if emptyData || isNotInData {
+                    saveData(count: 1)
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
+    func clear(title: String) {
+        let context = stack.conainer.viewContext
+        context.performAndWait {
+            let request = NSFetchRequest<Entity>(entityName: "Entity")
+            request.returnsObjectsAsFaults = false
+            do {
+                let result = try request.execute()
+                for item in result {
+                    if item.title == title {
+                        context.delete(item)
+                        try? context.save()
+                    }
+                }
+            } catch {
+                print(error)
+            }
+        }
+        self.viewWillAppear(true)
+    }
+    
+    func saveData(count: Int) {
+        let writeContext = stack.conainer.viewContext
+        writeContext.performAndWait{
+            let clothes = Entity(context: writeContext)
+            clothes.title = titleOfClothes.text
+            clothes.clothesDescription = descriptionOfClothes.text
+            clothes.price = priceOfClothes.text!
+            clothes.season = seasonOfClothesLabel.text
+            clothes.gender = genderOfClothesLabel.text
+            clothes.url = urlOfImage
+            clothes.count = Int16(count)
+            try? writeContext.save()
+        }
+    }
+    
     func createCellModel(data: JsonCellViewModel){
+        titleOfClothes.text = data.title
+        descriptionOfClothes.text = data.description
         priceOfClothes.text = data.price
         seasonOfClothesLabel.text = "Сезон: \(data.season)"
         genderOfClothesLabel.text = "Для: \(data.gender)"
-        titleOfClothes.text = data.title
-        descriptionOfClothes.text = data.description
-        titleOfClothes.text = data.title
         imageOfClothes.image = data.image?.image
+        urlOfImage = data.urlOfImage
     }
     
     // создаем constraint и добавляем Subview

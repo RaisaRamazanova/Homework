@@ -111,6 +111,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
+        button.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
         return button
     }()
     
@@ -138,7 +139,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.tag = 2
         secondPassword.delegate = self
         secondPassword.tag = 3
-        loginButton.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
     }
     
     // MARK: - function
@@ -151,7 +151,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
              textField.resignFirstResponder()
           }
           return false
-       }
+    }
     
     @objc func loginUser() {
         if loginTextField.text == "" || passwordTextField.text == "" || secondPassword.text == "" || userName.text == "" {
@@ -160,7 +160,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         if loginTextField.text != "" && passwordTextField.text != "" && secondPassword.text != "" && userName.text != "" {
             let _ = service.save(value: passwordTextField.text, queryItem: GenericPassword(key: loginTextField.text!))
             UserDefaults.standard.set(userName.text, forKey: loginTextField.text!)
-            Alert.alert(vc: self, title: "Вы зарегистрировались, \(userName.text!)", message: "Войдите в систему теперь")
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -195,7 +195,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             loginTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
             
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 30),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),

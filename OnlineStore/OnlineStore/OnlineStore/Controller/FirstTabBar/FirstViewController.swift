@@ -8,7 +8,7 @@
 import UIKit
 
 
-class FirstViewController : UIViewController {
+class FirstViewController : UIViewController, UISearchBarDelegate {
     
     // MARK: - Properties
     let screenSize = UIScreen.main.bounds
@@ -16,7 +16,6 @@ class FirstViewController : UIViewController {
     let layout = UICollectionViewFlowLayout()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     lazy var searchBar = UISearchBar()
-    private let refreshControl = UIRefreshControl()
 
     // MARK: - Overriden Methods
     
@@ -32,7 +31,7 @@ class FirstViewController : UIViewController {
         initTableView()
         setupLayout()
         ActivityIndicatorViewController.startAnimating(in: self)
-        initViewModel()
+        initViewModel()  
     }
     
     // MARK: - Methods
@@ -40,20 +39,19 @@ class FirstViewController : UIViewController {
     func initViewModel() {
         viewModel.getJsons()
         viewModel.reloadCollectionView = { [weak self] in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [self] in
                 self?.collectionView.reloadData()
                 ActivityIndicatorViewController.stopAnimating(in: self ?? FirstViewController())
             }
         }
-        
     }
     
-    // инициализируем  tableView
+    // инициализируем  collectionView
     private func initTableView() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor(#colorLiteral(red: 0.8956577182, green: 0.8958080411, blue: 0.8956379294, alpha: 1))
-        collectionView.register(CustomCell.self, forCellWithReuseIdentifier: String(describing: CustomCell.self))
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CustomCollectionViewCell.self))
     }
     
     // задаем имя navigationBar и другие параметры
@@ -92,4 +90,21 @@ class FirstViewController : UIViewController {
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.jsonCellViewModels.removeAll()
+        for item in viewModel.filterData {
+            if (item.title.lowercased().contains(searchBar.text!.lowercased())) {
+                self.viewModel.jsonCellViewModels.append(item)
+            }
+            if (item.description.lowercased().contains(searchBar.text!.lowercased())) {
+                self.viewModel.jsonCellViewModels.append(item)
+            }
+        }
+        if searchText == "" {
+            viewModel.jsonCellViewModels = viewModel.filterData
+        }
+        collectionView.reloadData()
+    }
 }
+

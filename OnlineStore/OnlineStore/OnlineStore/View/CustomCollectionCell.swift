@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CustomCell: UICollectionViewCell {
+class CustomCollectionViewCell: UICollectionViewCell {
 
     var cellViewModel: JsonCellViewModel? {
         didSet {

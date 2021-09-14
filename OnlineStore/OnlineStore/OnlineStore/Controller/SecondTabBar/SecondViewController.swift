@@ -115,13 +115,13 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     // переходим к следующему textField принажатии на return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-          if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
-             nextField.becomeFirstResponder()
-          } else {
-             textField.resignFirstResponder()
-          }
-          return false
-       }
+      if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+         nextField.becomeFirstResponder()
+      } else {
+         textField.resignFirstResponder()
+      }
+      return false
+    }
     
     @objc func loginUser() {
         if loginTextField.text == "" || passwordTextField.text == "" {

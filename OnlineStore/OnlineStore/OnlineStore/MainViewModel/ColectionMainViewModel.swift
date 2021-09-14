@@ -7,20 +7,9 @@
 
 import UIKit
 
-struct JsonCellViewModel {
-    var title: String = ""
-    var id: Int = 0
-    var image: UIImageView?
-    var price: String = ""
-    var description: String = ""
-    var gender: String = ""
-    var season: String = ""
-}
-
 class JsonViewModel: NSObject {
     // MARK: - properties
-    
-    var indexDetailVCTitle: Int = 0
+
     private var jsonService: JsonServiceProtocol
     var reloadCollectionView: (() -> Void)?
     var jsonCellViewModels = [JsonCellViewModel]() {
@@ -28,6 +17,7 @@ class JsonViewModel: NSObject {
             reloadCollectionView?()
         }
     }
+    var filterData: [JsonCellViewModel] = []
 
     // MARK: - init
     
@@ -53,6 +43,7 @@ class JsonViewModel: NSObject {
                 vms.append(createCellModel(datas: data))
             }
         jsonCellViewModels = vms
+        filterData = jsonCellViewModels
     }
     
     func createCellModel(datas: JsonData) -> JsonCellViewModel {
@@ -60,20 +51,22 @@ class JsonViewModel: NSObject {
         let id = datas.id
 
         let image = UIImageView()
-        image.image = self.loadImage(url: datas.url)
+        
+        image.image = self.loadImage(url: (URL(string: datas.url) ?? URL(string: "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"))!)
         
         let price = datas.price
         let description = datas.description
         let gender = datas.gender
         let season = datas.season
+        let url = datas.url
 
-        return JsonCellViewModel(title: title, id: id, image: image, price: price, description: description, gender: gender, season: season)
+        return JsonCellViewModel(title: title, id: id, image: image, price: price, description: description, gender: gender, season: season, urlOfImage: url)
     }
     
     func loadImage(url: URL) -> UIImage {
         var image = UIImage()
         if let data = try? Data(contentsOf: url) {
-            image = UIImage(data: data) ?? UIImage(named: "1")!
+            image = UIImage(data: data) ?? UIImage(systemName: "person")!
         }
         return image
     }
