@@ -73,6 +73,7 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
+        button.addTarget(self, action: #selector(touchDownButton(sender:)), for: .touchDown)
         return button
     }()
 
@@ -99,7 +100,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
 
         passwordTextField.delegate = self
         passwordTextField.tag = 1
-        loginButton.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
         registrationButton.addTarget(self, action: #selector(registerUser), for: .touchUpInside)
 
         self.navigationController?.isNavigationBarHidden = true
@@ -123,7 +123,9 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
       return false
     }
     
-    @objc func loginUser() {
+    @objc fileprivate func touchDownButton(sender: UIButton) {
+        view.animateDownView(sender)
+        view.animateUpView(sender)
         if loginTextField.text == "" || passwordTextField.text == "" {
             Alert.alert(vc: self, title: "Некорректные данные", message: "Введите логин и пароль")
         }
@@ -145,10 +147,6 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func registerUser() {
-        showDetailScreen()
-    }
-    
-    func showDetailScreen() {
         let detailVC = RegisterViewController()
         let navigationVC = UINavigationController(rootViewController: detailVC)
         let cancelButton = UIBarButtonItem(title: "Отмена", style: .plain, target: self, action: #selector(self.hideDetailVC))

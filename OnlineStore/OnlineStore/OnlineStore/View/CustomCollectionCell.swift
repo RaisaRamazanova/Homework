@@ -9,7 +9,7 @@ import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
 
-    var cellViewModel: JsonCellViewModel? {
+    var cellViewModel: CellViewModel? {
         didSet {
             setupLayout()
             clothesLabel.text = cellViewModel?.title

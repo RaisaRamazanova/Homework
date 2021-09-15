@@ -111,7 +111,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
-        button.addTarget(self, action: #selector(loginUser), for: .touchUpInside)
+        button.addTarget(self, action: #selector(touchDownButton(sender:)), for: .touchDown)
         return button
     }()
     
@@ -153,7 +153,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
           return false
     }
     
-    @objc func loginUser() {
+    @objc fileprivate func touchDownButton(sender: UIButton) {
+        view.animateDownView(sender)
+        view.animateUpView(sender)
         if loginTextField.text == "" || passwordTextField.text == "" || secondPassword.text == "" || userName.text == "" {
             Alert.alert(vc: self, title: "Некорректные данные", message: "Введите логин и пароль")
         }
@@ -186,27 +188,27 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             registerLabel.topAnchor.constraint(equalTo: imageOfPerson.bottomAnchor, constant: 5),
             registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
-            userName.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 30),
+            userName.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 20),
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             userName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            loginTextField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 30),
+            loginTextField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 20),
             loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             loginTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 30),
+            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            secondPassword.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30),
+            secondPassword.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             secondPassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             secondPassword.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             secondPassword.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
             
-            loginButton.topAnchor.constraint(equalTo: secondPassword.bottomAnchor, constant: 30),
+            loginButton.topAnchor.constraint(equalTo: secondPassword.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),

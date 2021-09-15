@@ -8,19 +8,10 @@
 import UIKit
 
 // MARK: - Extension
-extension FirstViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: screenSize.width / 2 - 5, height: 350)
-    }
-    
+extension FirstViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.jsonCellViewModels.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = DetailViewController(forClothes: viewModel.getCellViewModel(at: indexPath))
-        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -32,3 +23,17 @@ extension FirstViewController: UICollectionViewDataSource, UICollectionViewDeleg
     }
 }
 
+extension FirstViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = DetailViewController(forClothes: viewModel.getCellViewModel(at: indexPath))
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+}
+
+extension FirstViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: screenSize.width / 2 - 5, height: 350)
+    }
+}

@@ -12,6 +12,9 @@ class DetailViewController: UIViewController {
     
     // MARK: - Properties
     
+    private let stack = NewStack.shared
+    lazy var writeContext = stack.conainer.viewContext
+    
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -38,7 +41,8 @@ class DetailViewController: UIViewController {
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
-        button.addTarget(self, action: #selector(write), for: .touchUpInside )
+        button.addTarget(self, action: #selector(touchDownButton(sender:)), for: .touchDown)
+        button.addTarget(self, action: #selector(touchUpInsideButton), for: .touchUpInside)
         return button
     }()
     
@@ -63,6 +67,15 @@ class DetailViewController: UIViewController {
         return priceOfClothes
     }()
     
+    private let currencyOfClothes : UILabel = {
+        let currencyOfClothes = UILabel()
+        currencyOfClothes.text = " ₽"
+        currencyOfClothes.textColor = .black
+        currencyOfClothes.font = UIFont.boldSystemFont(ofSize: 20)
+        return currencyOfClothes
+    }()
+    
+    
     private let aboutClothesLabel : UILabel = {
         let aboutClothesLabel = UILabel()
         aboutClothesLabel.text = "О товаре"
@@ -85,12 +98,28 @@ class DetailViewController: UIViewController {
         return genderOfClothesLabel
     }()
     
-    private var urlOfImage = "https://a.lmcdn.ru/product/I/X/IX001XW0127H_14657320_1_v1.jpeg"
+    private let forGenderOfClothesLabel : UILabel = {
+        let genderOfClothesLabel = UILabel()
+        genderOfClothesLabel.text = "Для: "
+        genderOfClothesLabel.textColor = .black
+        genderOfClothesLabel.font = UIFont.systemFont(ofSize: 14)
+        return genderOfClothesLabel
+    }()
+    
+    private let forSeasonOfClothesLabel : UILabel = {
+        let genderOfClothesLabel = UILabel()
+        genderOfClothesLabel.text = "Сезон: "
+        genderOfClothesLabel.textColor = .black
+        genderOfClothesLabel.font = UIFont.systemFont(ofSize: 14)
+        return genderOfClothesLabel
+    }()
+    
+    private var urlOfImage = "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"
     
     
     // MARK: - init
     
-    init(forClothes: JsonCellViewModel) {
+    init(forClothes: CellViewModel) {
         super.init(nibName: nil, bundle: nil)
         createCellModel(data: forClothes)
     }
@@ -117,20 +146,20 @@ class DetailViewController: UIViewController {
         scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor).isActive = true
         scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
         scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-
-        scrollViewContainer.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 50).isActive = true
+        scrollViewContainer.heightAnchor.constraint(equalToConstant: 700).isActive = true
         scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         
         setupLayout()
     }
     
-    
-    private let stack = NewStack.shared
-    lazy var writeContext = stack.conainer.viewContext
-    
     // MARK: - Methods
+    
+    @objc fileprivate func touchUpInsideButton(sender: UIButton) {
+        view.animateUpView(sender)
+    }
 
-    @objc func write() {
+    @objc fileprivate func touchDownButton(sender: UIButton) {
+        sender.animateDownView(sender)
         writeContext.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             do {
@@ -141,7 +170,7 @@ class DetailViewController: UIViewController {
                     emptyData = false
                     if (item.clothesDescription! + item.title!) == (descriptionOfClothes.text! + titleOfClothes.text!) {
                         let clothesCount = Int(item.count)
-                        clear(title: item.title!)
+                        clear(title: item.title!, description: item.clothesDescription!)
                         saveData(count: clothesCount + 1)
                         isNotInData = false
                     }
@@ -155,7 +184,7 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func clear(title: String) {
+    func clear(title: String, description: String) {
         let context = stack.conainer.viewContext
         context.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
@@ -163,7 +192,7 @@ class DetailViewController: UIViewController {
             do {
                 let result = try request.execute()
                 for item in result {
-                    if item.title == title {
+                    if item.title == title && item.clothesDescription == description {
                         context.delete(item)
                         try? context.save()
                     }
@@ -190,12 +219,12 @@ class DetailViewController: UIViewController {
         }
     }
     
-    func createCellModel(data: JsonCellViewModel){
+    func createCellModel(data: CellViewModel){
         titleOfClothes.text = data.title
         descriptionOfClothes.text = data.description
-        priceOfClothes.text = data.price + " ₽"
-        seasonOfClothesLabel.text = "Сезон: \(data.season)"
-        genderOfClothesLabel.text = "Для: \(data.gender)"
+        priceOfClothes.text = data.price
+        seasonOfClothesLabel.text = data.season
+        genderOfClothesLabel.text = data.gender
         imageOfClothes.image = data.image?.image
         urlOfImage = data.urlOfImage
     }
@@ -203,22 +232,25 @@ class DetailViewController: UIViewController {
     // создаем constraint и добавляем Subview
     private func setupLayout() {
         [priceOfClothes,
+         currencyOfClothes,
          titleOfClothes,
          descriptionOfClothes,
          genderOfClothesLabel,
          seasonOfClothesLabel,
          imageOfClothes,
          aboutClothesLabel,
-         buyButton].forEach {
+         buyButton,
+         forGenderOfClothesLabel,
+         forSeasonOfClothesLabel].forEach {
             scrollViewContainer.addSubview($0)
             $0.toAutoLayout()
         }
         
         NSLayoutConstraint.activate([
             imageOfClothes.topAnchor.constraint(equalTo: scrollViewContainer.topAnchor, constant: 0),
-            imageOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor),
-            imageOfClothes.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor),
-            imageOfClothes.heightAnchor.constraint(equalToConstant: 500),
+            imageOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 25),
+            imageOfClothes.rightAnchor.constraint(equalTo: scrollViewContainer.rightAnchor, constant: -25),
+            imageOfClothes.heightAnchor.constraint(equalToConstant: 400),
             
             titleOfClothes.topAnchor.constraint(equalTo: imageOfClothes.bottomAnchor, constant: 10),
             titleOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
@@ -228,6 +260,9 @@ class DetailViewController: UIViewController {
             
             priceOfClothes.topAnchor.constraint(equalTo: descriptionOfClothes.bottomAnchor, constant: 10),
             priceOfClothes.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
+            
+            currencyOfClothes.topAnchor.constraint(equalTo: descriptionOfClothes.bottomAnchor, constant: 10),
+            currencyOfClothes.leftAnchor.constraint(equalTo: priceOfClothes.rightAnchor, constant: 5),
             
             buyButton.topAnchor.constraint(equalTo: priceOfClothes.bottomAnchor, constant: 30),
             buyButton.centerXAnchor.constraint(equalTo: scrollViewContainer.centerXAnchor),
@@ -239,10 +274,16 @@ class DetailViewController: UIViewController {
             aboutClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
             
             seasonOfClothesLabel.topAnchor.constraint(equalTo: aboutClothesLabel.bottomAnchor, constant: 10),
-            seasonOfClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
+            seasonOfClothesLabel.leftAnchor.constraint(equalTo: forSeasonOfClothesLabel.rightAnchor, constant: 5),
+            
+            forSeasonOfClothesLabel.topAnchor.constraint(equalTo: aboutClothesLabel.bottomAnchor, constant: 10),
+            forSeasonOfClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
             
             genderOfClothesLabel.topAnchor.constraint(equalTo: seasonOfClothesLabel.bottomAnchor, constant: 10),
-            genderOfClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
+            genderOfClothesLabel.leftAnchor.constraint(equalTo: forGenderOfClothesLabel.rightAnchor, constant: 5),
+            
+            forGenderOfClothesLabel.topAnchor.constraint(equalTo: seasonOfClothesLabel.bottomAnchor, constant: 10),
+            forGenderOfClothesLabel.leftAnchor.constraint(equalTo: scrollViewContainer.leftAnchor, constant: 10),
         ])
     }
 }

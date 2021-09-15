@@ -22,7 +22,7 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.tintColor = .white
         hideKeyboardWhenTappedAround()
         
         // добавим заголовок в navigationBar и добавим под ним searchBar
@@ -50,7 +50,7 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
     private func initTableView() {
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor(#colorLiteral(red: 0.8956577182, green: 0.8958080411, blue: 0.8956379294, alpha: 1))
+        collectionView.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: String(describing: CustomCollectionViewCell.self))
     }
     
@@ -63,7 +63,16 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
     
     // инициализируем  searchBar
     private func initSearchBar() {
-        searchBar.placeholder = "Поиск"
+        if let textfield = searchBar.value(forKey: "searchField") as? UITextField {
+            textfield.textColor = UIColor.black
+            textfield.attributedPlaceholder = NSAttributedString(string: "Поиск",
+                                                                 attributes: [NSAttributedString.Key.foregroundColor: UIColor.black])
+            if let leftView = textfield.leftView as? UIImageView {
+                    leftView.image = leftView.image?.withRenderingMode(.alwaysTemplate)
+                    leftView.tintColor = UIColor.black
+                }
+        }
+        searchBar.backgroundImage = UIImage()
         searchBar.barStyle = .default
         searchBar.isTranslucent = false
         searchBar.delegate = self
@@ -107,4 +116,3 @@ class FirstViewController : UIViewController, UISearchBarDelegate {
         collectionView.reloadData()
     }
 }
-

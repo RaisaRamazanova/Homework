@@ -36,6 +36,8 @@ class LoginViewController: UIViewController {
         button.tintColor = .black
         button.addShadow()
         button.layer.cornerRadius = 6
+        button.addTarget(self, action: #selector(touchDownButton(sender:)), for: .touchDown)
+        button.addTarget(self, action: #selector(touchUpInsideButton), for: .touchUpInside)
         return button
     }()
     
@@ -68,8 +70,6 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupLayout()
         self.view.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
-        unloginButton.addTarget(self, action: #selector(unloginUser), for: .touchUpInside)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,6 +83,11 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - function
+    
+    @objc fileprivate func touchUpInsideButton(sender: UIButton) {
+        view.animateUpView(sender)
+    }
+
     
     func titleAnimation() {
         let gradientLayer = CAGradientLayer()
@@ -104,7 +109,8 @@ class LoginViewController: UIViewController {
         gradientLayer.add(animation, forKey: "key")
     }
     
-    @objc func unloginUser() {
+    @objc fileprivate func touchDownButton(sender: UIButton) {
+        sender.animateDownView(sender)
         UserDefaults.standard.set(false, forKey: "isUserLogin")
         self.navigationController?.popViewController(animated: true)
     }

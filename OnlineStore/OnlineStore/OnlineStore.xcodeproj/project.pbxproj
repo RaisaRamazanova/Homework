@@ -36,9 +36,8 @@
 		BBEAD58A26E9765B00642AF2 /* NewStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD58926E9765B00642AF2 /* NewStack.swift */; };
 		BBEAD58D26E9770100642AF2 /* Entity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD58B26E9770100642AF2 /* Entity+CoreDataClass.swift */; };
 		BBEAD58E26E9770100642AF2 /* Entity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD58C26E9770100642AF2 /* Entity+CoreDataProperties.swift */; };
-		BBEAD59026E989DB00642AF2 /* JsonCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD58F26E989DB00642AF2 /* JsonCellViewModel.swift */; };
+		BBEAD59026E989DB00642AF2 /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD58F26E989DB00642AF2 /* CellViewModel.swift */; };
 		BBEAD59226ED307F00642AF2 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD59126ED307F00642AF2 /* CustomTableViewCell.swift */; };
-		BBEAD59426ED339700642AF2 /* CoreDataCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD59326ED339700642AF2 /* CoreDataCellViewModel.swift */; };
 		BBEAD59626ED344600642AF2 /* TableViewMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD59526ED344600642AF2 /* TableViewMainViewModel.swift */; };
 		BBEAD59826ED3E0100642AF2 /* ExtensionTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBEAD59726ED3E0100642AF2 /* ExtensionTableView.swift */; };
 		BBF069A826C161D400B6772D /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBF069A726C161D400B6772D /* JsonModel.swift */; };
@@ -97,9 +96,8 @@
 		BBEAD58926E9765B00642AF2 /* NewStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewStack.swift; sourceTree = "<group>"; };
 		BBEAD58B26E9770100642AF2 /* Entity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BBEAD58C26E9770100642AF2 /* Entity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BBEAD58F26E989DB00642AF2 /* JsonCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonCellViewModel.swift; sourceTree = "<group>"; };
+		BBEAD58F26E989DB00642AF2 /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		BBEAD59126ED307F00642AF2 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
-		BBEAD59326ED339700642AF2 /* CoreDataCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCellViewModel.swift; sourceTree = "<group>"; };
 		BBEAD59526ED344600642AF2 /* TableViewMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewMainViewModel.swift; sourceTree = "<group>"; };
 		BBEAD59726ED3E0100642AF2 /* ExtensionTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionTableView.swift; sourceTree = "<group>"; };
 		BBF069A726C161D400B6772D /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
@@ -153,13 +151,15 @@
 		439CA0FC26B8216600D5A1A7 /* OnlineStore */ = {
 			isa = PBXGroup;
 			children = (
+				BBA05C8E26DD7F83001070CD /* Services */,
+				BBEAD56A26E6AB8500642AF2 /* KeyChain */,
+				439CA13326B8298400D5A1A7 /* AppDelegate */,
+				439CA13626B82AC800D5A1A7 /* View */,
 				BBEAD58B26E9770100642AF2 /* Entity+CoreDataClass.swift */,
 				BBEAD58C26E9770100642AF2 /* Entity+CoreDataProperties.swift */,
 				BBEAD57726E9690500642AF2 /* CoreData */,
 				BBEAD56126E5562F00642AF2 /* MainViewModel */,
-				BBA05C8E26DD7F83001070CD /* Services */,
 				439CA13926B8534800D5A1A7 /* Model */,
-				439CA13626B82AC800D5A1A7 /* View */,
 				BBEAD55826E413CB00642AF2 /* Helpers */,
 				439CA13026B8279000D5A1A7 /* Controller */,
 				439CA10926B8216A00D5A1A7 /* Assets.xcassets */,
@@ -221,8 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				BBF069A726C161D400B6772D /* JsonModel.swift */,
-				BBEAD58F26E989DB00642AF2 /* JsonCellViewModel.swift */,
-				BBEAD59326ED339700642AF2 /* CoreDataCellViewModel.swift */,
+				BBEAD58F26E989DB00642AF2 /* CellViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,7 +229,6 @@
 		BBA05C8E26DD7F83001070CD /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				BBEAD56A26E6AB8500642AF2 /* KeyChain */,
 				BBA05C8F26DD7F98001070CD /* HttpRequestHelper.swift */,
 				BBA05C9126DD7FB6001070CD /* Services.swift */,
 			);
@@ -240,7 +238,6 @@
 		BBEAD55826E413CB00642AF2 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				439CA13326B8298400D5A1A7 /* AppDelegate */,
 				BBEAD55926E413DB00642AF2 /* ExtensionView.swift */,
 				BBEAD57C26E96BBB00642AF2 /* ExtensionViewController.swift */,
 				BBEAD55B26E414FC00642AF2 /* ExtensionCollectionView.swift */,
@@ -436,12 +433,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA05C8626DD6B42001070CD /* DetailViewController.swift in Sources */,
-				BBEAD59426ED339700642AF2 /* CoreDataCellViewModel.swift in Sources */,
 				BBA05C9226DD7FB6001070CD /* Services.swift in Sources */,
 				439CA13B26B8546100D5A1A7 /* FirstViewController.swift in Sources */,
 				BBA05C9026DD7F98001070CD /* HttpRequestHelper.swift in Sources */,
 				BBEAD56726E6AB4800642AF2 /* GenericPassword.swift in Sources */,
-				BBEAD59026E989DB00642AF2 /* JsonCellViewModel.swift in Sources */,
+				BBEAD59026E989DB00642AF2 /* CellViewModel.swift in Sources */,
 				BBEAD57D26E96BBB00642AF2 /* ExtensionViewController.swift in Sources */,
 				BBEAD56526E6AB2600642AF2 /* KeyChainService.swift in Sources */,
 				BBEAD59626ED344600642AF2 /* TableViewMainViewModel.swift in Sources */,

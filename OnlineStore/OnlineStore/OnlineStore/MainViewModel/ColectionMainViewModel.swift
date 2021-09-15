@@ -12,12 +12,12 @@ class JsonViewModel: NSObject {
 
     private var jsonService: JsonServiceProtocol
     var reloadCollectionView: (() -> Void)?
-    var jsonCellViewModels = [JsonCellViewModel]() {
+    var jsonCellViewModels = [CellViewModel]() {
         didSet {
             reloadCollectionView?()
         }
     }
-    var filterData: [JsonCellViewModel] = []
+    var filterData: [CellViewModel] = []
 
     // MARK: - init
     
@@ -38,7 +38,7 @@ class JsonViewModel: NSObject {
     }
     
     func fetchJsonData(json: [JsonData]) {
-        var vms = [JsonCellViewModel]()
+        var vms = [CellViewModel]()
             for data in json {
                 vms.append(createCellModel(datas: data))
             }
@@ -46,7 +46,7 @@ class JsonViewModel: NSObject {
         filterData = jsonCellViewModels
     }
     
-    func createCellModel(datas: JsonData) -> JsonCellViewModel {
+    func createCellModel(datas: JsonData) -> CellViewModel {
         let title = datas.title
         let image = UIImageView()
         image.image = self.loadImage(url: (URL(string: datas.url) ?? URL(string: "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"))!)
@@ -55,7 +55,7 @@ class JsonViewModel: NSObject {
         let gender = datas.gender
         let season = datas.season
         let url = datas.url
-        return JsonCellViewModel(title: title, image: image, price: price, description: description, gender: gender, season: season, urlOfImage: url)
+        return CellViewModel(title: title, description: description, image: image, price: price, gender: gender, season: season, urlOfImage: url)
     }
     
     func loadImage(url: URL) -> UIImage {
@@ -66,7 +66,7 @@ class JsonViewModel: NSObject {
         return image
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> JsonCellViewModel {
+    func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
         return jsonCellViewModels[indexPath.row]
     }
 }

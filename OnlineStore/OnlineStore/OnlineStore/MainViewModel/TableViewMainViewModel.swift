@@ -15,7 +15,7 @@ class CoreDataViewModel: NSObject {
     private let stack = NewStack.shared
     lazy var viewContext = stack.conainer.viewContext
     var reloadTableView: (() -> Void)?
-    var coreDataCellViewModels = [CoreDataCellViewModel]()
+    var coreDataCellViewModels = [CellViewModel]()
     {
         didSet {
             reloadTableView?()
@@ -29,7 +29,7 @@ class CoreDataViewModel: NSObject {
             coreDataCellViewModels.removeAll()
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             let result = try? request.execute()
-            var data = CoreDataCellViewModel()
+            var data = CellViewModel()
             for res in result! {
                 data.title = res.title!
                 data.description = res.clothesDescription!
@@ -54,7 +54,7 @@ class CoreDataViewModel: NSObject {
         return image
     }
     
-    func getCellViewModel(at indexPath: IndexPath) -> CoreDataCellViewModel {
+    func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
         return coreDataCellViewModels[indexPath.row]
     }
 }

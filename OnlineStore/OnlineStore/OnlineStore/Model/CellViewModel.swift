@@ -7,12 +7,13 @@
 
 import UIKit
 
-struct JsonCellViewModel {
+struct CellViewModel {
     var title: String = ""
+    var description: String = ""
     var image: UIImageView?
     var price: String = ""
-    var description: String = ""
     var gender: String = ""
     var season: String = ""
     var urlOfImage: String = ""
+    var count: Int = 0
 }

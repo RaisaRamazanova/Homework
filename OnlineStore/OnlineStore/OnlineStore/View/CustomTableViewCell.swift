@@ -9,13 +9,12 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
 
-    var cellViewModel: CoreDataCellViewModel? {
+    var cellViewModel: CellViewModel? {
         didSet {
             setupLayout()
             clothesLabelAndDescription.text = cellViewModel!.description + " " + cellViewModel!.title
-            clothesCount.text = "Количество товара: " + String(cellViewModel?.count ?? 1)
-            print(Int(cellViewModel!.price), cellViewModel!.price)
-            clothesPrice.text = String( Int(cellViewModel!.price) ?? 100 * cellViewModel!.count )  + " ₽"
+            clothesCount.text = "Количество: " + String(cellViewModel?.count ?? 1) + " шт."
+            clothesPrice.text = String( Int(cellViewModel!.price)! * cellViewModel!.count )  + " ₽"
             imageOfClothes.image = cellViewModel?.image?.image
         }
     }

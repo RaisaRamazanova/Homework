@@ -8,8 +8,6 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    // MARK: - Properties
-
 
     // MARK: - Overriden Methods
     

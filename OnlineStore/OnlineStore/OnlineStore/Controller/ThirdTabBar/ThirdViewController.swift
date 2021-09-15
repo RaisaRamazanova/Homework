@@ -42,6 +42,8 @@ class ThirdViewController: UIViewController {
         initNavigation()
         initTableView()
         setupLayout()
+        self.navigationController?.navigationBar.tintColor = .white
+        tableView.tableFooterView = UIView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,15 +60,15 @@ class ThirdViewController: UIViewController {
     
     // MARK: - functions
     
-    func write(data: CoreDataCellViewModel) {
+    func write(data: CellViewModel) {
         writeContext.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             do {
                 let result = try request.execute()
                 for item in result {
-                    if (item.clothesDescription! + " " + item.title!) == (data.description + " " + data.title) {
+                    if (item.clothesDescription! + item.title!) == (data.description + data.title) {
                         let clothesCount = Int(item.count)
-                        clearClothes(title: item.title!)
+                        clearClothes(title: item.title!, description: item.clothesDescription!)
                         if clothesCount > 1 {
                             saveData(count: clothesCount - 1, for: data)
                         }
@@ -79,7 +81,7 @@ class ThirdViewController: UIViewController {
         }
     }
     
-    func clearClothes(title: String) {
+    func clearClothes(title: String, description: String) {
         let context = stack.conainer.viewContext
         context.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
@@ -87,7 +89,7 @@ class ThirdViewController: UIViewController {
             do {
                 let result = try request.execute()
                 for item in result {
-                    if item.title == title {
+                    if item.title == title && item.clothesDescription == description {
                         context.delete(item)
                         try? context.save()
                     }
@@ -98,7 +100,7 @@ class ThirdViewController: UIViewController {
         }
     }
     
-    func saveData(count: Int, for data: CoreDataCellViewModel) {
+    func saveData(count: Int, for data: CellViewModel) {
         let writeContext = stack.conainer.viewContext
         writeContext.performAndWait{
             let clothes = Entity(context: writeContext)

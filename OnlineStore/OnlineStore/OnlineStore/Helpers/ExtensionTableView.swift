@@ -26,6 +26,11 @@ extension ThirdViewController:  UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 170
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = DetailViewController(forClothes: viewModel.getCellViewModel(at: indexPath))
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension ThirdViewController: UITableViewDataSource {
@@ -37,7 +42,7 @@ extension ThirdViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomTableViewCell.self), for: indexPath) as! CustomTableViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
         cell.cellViewModel = cellVM
-        cell.backgroundColor = .white
+        cell.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         return cell
     }
 }
