@@ -12,12 +12,18 @@ extension ThirdViewController:  UITableViewDelegate {
     
     // удаляем ячейку
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal, title: "Уменьшить на 1") { [self] _, _, complete in
+        let deleteAllAction = UIContextualAction(style: .destructive, title: "Удалить все") { [self] _, _, complete in
             let cellVM = viewModel.getCellViewModel(at: indexPath)
-            write(data: cellVM)
+            deleteAllClothes(data: cellVM)
             complete(true)
         }
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        
+        let deleteOneClothesAction = UIContextualAction(style: .normal, title: "Удалить 1 шт.") { [self] _, _, complete in
+            let cellVM = viewModel.getCellViewModel(at: indexPath)
+            editCount(data: cellVM)
+            complete(true)
+        }
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAllAction, deleteOneClothesAction])
         configuration.performsFirstActionWithFullSwipe = true
         return configuration
     }

@@ -60,7 +60,7 @@ class ThirdViewController: UIViewController {
     
     // MARK: - functions
     
-    func write(data: CellViewModel) {
+    func editCount(data: CellViewModel) {
         writeContext.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             do {
@@ -72,6 +72,23 @@ class ThirdViewController: UIViewController {
                         if clothesCount > 1 {
                             saveData(count: clothesCount - 1, for: data)
                         }
+                        self.viewWillAppear(true)
+                    }
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
+    
+    func deleteAllClothes(data: CellViewModel) {
+        writeContext.performAndWait {
+            let request = NSFetchRequest<Entity>(entityName: "Entity")
+            do {
+                let result = try request.execute()
+                for item in result {
+                    if (item.clothesDescription! + item.title!) == (data.description + data.title) {
+                        clearClothes(title: item.title!, description: item.clothesDescription!)
                         self.viewWillAppear(true)
                     }
                 }
