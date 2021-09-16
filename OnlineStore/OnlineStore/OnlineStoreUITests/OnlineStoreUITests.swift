@@ -15,7 +15,7 @@ class OnlineStoreUITests: XCTestCase {
         app.launch()
     }
 
-    override func tearDown(){
+    override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
@@ -24,19 +24,18 @@ class OnlineStoreUITests: XCTestCase {
 //        let app = XCUIApplication()
 //        app.launch()
 //    }
-    
+
     func testTupElementSuccess() {
-        
+
         let userSearchText = "abc"
-        
+
         let searchField = XCUIApplication().searchFields["Поиск..."]
         let textInSearch = searchField
         textInSearch.tap()
-        
+
         textInSearch.typeText(userSearchText)
-        
-        
+
         searchField.buttons["Clear text"].tap()
-                        
+
     }
 }

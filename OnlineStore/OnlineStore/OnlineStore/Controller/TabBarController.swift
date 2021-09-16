@@ -7,18 +7,18 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
 
-    // MARK: - Overriden Methods
-    
+    //  MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        makeUI()
+        makeTabBar()
     }
 
     // MARK: - Private Methods
 
-    private func makeUI() {
+    private func makeTabBar() {
         let secondVC = UINavigationController.init(rootViewController: SecondViewController())
         secondVC.view.backgroundColor = .white
         secondVC.tabBarItem.title = "Профиль"

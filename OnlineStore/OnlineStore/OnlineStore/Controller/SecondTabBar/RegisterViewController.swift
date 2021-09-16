@@ -10,18 +10,18 @@ import UIKit
 class RegisterViewController: UIViewController, UITextFieldDelegate {
 
     // MARK: - Properties
-    
+
     private let service = KeychainService()
-    private let registerLabel : UILabel = {
-        let cl = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 30))
-        cl.textColor = .black
-        cl.text = "Регистрация"
-        cl.font = UIFont.boldSystemFont(ofSize: 30)
-        cl.textAlignment = .left
-        return cl
+    private let registerLabel: UILabel = {
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 20, height: 30))
+        label.textColor = .black
+        label.text = "Регистрация"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.textAlignment = .left
+        return label
     }()
-    
-    private let userName : UITextField = {
+
+    private let userName: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
@@ -40,8 +40,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         textField.text = nil
         return textField
     }()
-    
-    private let loginTextField : UITextField = {
+
+    private let loginTextField: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
@@ -61,8 +61,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         textField.text = nil
         return textField
     }()
-    
-    private let passwordTextField : UITextField = {
+
+    private let passwordTextField: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
         textField.backgroundColor = .white
@@ -71,7 +71,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         textField.layer.borderWidth = 1.0
         textField.attributedPlaceholder = NSAttributedString(string: "Пароль",
                                                              attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.isSecureTextEntry = true 
+        textField.isSecureTextEntry = true
         textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -82,7 +82,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         textField.text = nil
         return textField
     }()
-    
+
     private let secondPassword: UITextField = {
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 20))
         textField.textColor = .gray
@@ -103,7 +103,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         textField.text = nil
         return textField
     }()
-    
+
     private var loginButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 60, height: 40))
         button.backgroundColor = UIColor(#colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1))
@@ -114,18 +114,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         button.addTarget(self, action: #selector(touchDownButton(sender:)), for: .touchDown)
         return button
     }()
-    
+
     private var imageOfPerson: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "Личный кабинет")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        return iv
+        let view = UIImageView()
+        view.image = UIImage(named: "Личный кабинет")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
     }()
-    
-    // MARK: - override function
-    
+
+    //  MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
@@ -140,9 +140,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         secondPassword.delegate = self
         secondPassword.tag = 3
     }
-    
+
     // MARK: - function
-    
+
     // переходим к следующему textField принажатии на return
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
           if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
@@ -152,20 +152,22 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
           }
           return false
     }
-    
+
     @objc fileprivate func touchDownButton(sender: UIButton) {
         view.animateDownView(sender)
         view.animateUpView(sender)
         if loginTextField.text == "" || passwordTextField.text == "" || secondPassword.text == "" || userName.text == "" {
-            Alert.alert(vc: self, title: "Некорректные данные", message: "Введите логин и пароль")
+            Alert.alert(viewController: self, title: "Некорректные данные", message: "Введите логин и пароль")
         }
         if loginTextField.text != "" && passwordTextField.text != "" && secondPassword.text != "" && userName.text != "" {
-            let _ = service.save(value: passwordTextField.text, queryItem: GenericPassword(key: loginTextField.text!))
-            UserDefaults.standard.set(userName.text, forKey: loginTextField.text!)
-            dismiss(animated: true, completion: nil)
+            if passwordTextField.text == secondPassword.text {
+                _ = service.save(value: passwordTextField.text, queryItem: GenericPassword(key: loginTextField.text!))
+                UserDefaults.standard.set(userName.text, forKey: loginTextField.text!)
+                dismiss(animated: true, completion: nil)
+            } else {Alert.alert(viewController: self, title: "Пароли не совпадают", message: "Повторите попытку")}
         }
     }
-    
+
     // создаем constraint и добавляем Subview
     private func setupLayout() {
         [userName,
@@ -179,40 +181,39 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             $0.toAutoLayout()
         }
         NSLayoutConstraint.activate([
-            
             imageOfPerson.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
             imageOfPerson.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageOfPerson.heightAnchor.constraint(equalToConstant: 100),
             imageOfPerson.widthAnchor.constraint(equalToConstant: 100),
-            
+
             registerLabel.topAnchor.constraint(equalTo: imageOfPerson.bottomAnchor, constant: 5),
             registerLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
+
             userName.topAnchor.constraint(equalTo: registerLabel.bottomAnchor, constant: 20),
             userName.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userName.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             userName.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
+
             loginTextField.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 20),
             loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             loginTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
+
             passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 20),
             passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             passwordTextField.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             passwordTextField.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
+
             secondPassword.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
             secondPassword.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             secondPassword.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 10),
             secondPassword.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
-            
+
             loginButton.topAnchor.constraint(equalTo: secondPassword.bottomAnchor, constant: 20),
             loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 40),
             loginButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 50),
-            loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50),
+            loginButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -50)
         ])
     }
 }

@@ -1,0 +1,6 @@
+framework module Pods_OnlineStore_OnlineStoreUITests {
+  umbrella header "Pods-OnlineStore-OnlineStoreUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

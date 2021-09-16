@@ -5,38 +5,38 @@
 //  Created by Раисат Рамазанова on 30.08.2021.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-class ThirdViewController: UIViewController {
-    
-    lazy var viewModel = {CoreDataViewModel()}()
-    lazy var tableView = UITableView(frame: .zero)
-
-    private let emptyCart : UILabel = {
-        let cl = UILabel()
-        cl.textColor = .gray
-        cl.text = "Добавьте в корзину товары из каталога"
-        cl.textColor = .black
-        cl.font = UIFont.systemFont(ofSize: 15)
-        cl.textAlignment = .center
-        return cl
-    }()
-    
-    private var imageOfCart: UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "Корзина")
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
-        iv.clipsToBounds = true
-        return iv
-    }()
+final class ThirdViewController: UIViewController {
+    // MARK: - Properties
     
     private let stack = NewStack.shared
+    private let emptyCart: UILabel = {
+        let label = UILabel()
+        label.textColor = .gray
+        label.text = "Добавьте в корзину товары из каталога"
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 15)
+        label.textAlignment = .center
+        return label
+    }()
+
+    private var imageOfCart: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(named: "Корзина")
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.contentMode = .scaleAspectFill
+        view.clipsToBounds = true
+        return view
+    }()
+
+    lazy var viewModel = {CoreDataViewModel()}()
+    lazy var tableView = UITableView(frame: .zero)
     lazy var writeContext = stack.conainer.viewContext
 
-    // MARK: - override functions
-    
+    //  MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initNavigation()
@@ -45,60 +45,56 @@ class ThirdViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         tableView.tableFooterView = UIView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         initViewModel()
         if viewModel.coreDataCellViewModels.count == 0 {
             tableView.isHidden = true
             emptyCart.isHidden = false
             imageOfCart.isHidden = false
-        }else {
+        } else {
             tableView.isHidden = false
             emptyCart.isHidden = true
             imageOfCart.isHidden = true}
     }
-    
+
     // MARK: - functions
-    
+
     func editCount(data: CellViewModel) {
         writeContext.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             do {
                 let result = try request.execute()
-                for item in result {
-                    if (item.clothesDescription! + item.title!) == (data.description + data.title) {
-                        let clothesCount = Int(item.count)
-                        clearClothes(title: item.title!, description: item.clothesDescription!)
-                        if clothesCount > 1 {
-                            saveData(count: clothesCount - 1, for: data)
-                        }
-                        self.viewWillAppear(true)
+                for item in result where (item.clothesDescription! + item.title!) == (data.description + data.title) {
+                    let clothesCount = Int(item.count)
+                    clearClothes(title: item.title!, description: item.clothesDescription!)
+                    if clothesCount > 1 {
+                        saveData(count: clothesCount - 1, for: data)
                     }
+                    self.viewWillAppear(true)
                 }
             } catch {
                 print("error")
             }
         }
     }
-    
+
     func deleteAllClothes(data: CellViewModel) {
         writeContext.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
             do {
                 let result = try request.execute()
-                for item in result {
-                    if (item.clothesDescription! + item.title!) == (data.description + data.title) {
-                        clearClothes(title: item.title!, description: item.clothesDescription!)
-                        self.viewWillAppear(true)
-                    }
+                for item in result where (item.clothesDescription! + item.title!) == (data.description + data.title) {
+                    clearClothes(title: item.title!, description: item.clothesDescription!)
+                    self.viewWillAppear(true)
                 }
             } catch {
                 print("error")
             }
         }
     }
-    
-    func clearClothes(title: String, description: String) {
+
+    private func clearClothes(title: String, description: String) {
         let context = stack.conainer.viewContext
         context.performAndWait {
             let request = NSFetchRequest<Entity>(entityName: "Entity")
@@ -116,10 +112,10 @@ class ThirdViewController: UIViewController {
             }
         }
     }
-    
-    func saveData(count: Int, for data: CellViewModel) {
+
+    private func saveData(count: Int, for data: CellViewModel) {
         let writeContext = stack.conainer.viewContext
-        writeContext.performAndWait{
+        writeContext.performAndWait {
             let clothes = Entity(context: writeContext)
             clothes.title = data.title
             clothes.clothesDescription = data.description
@@ -131,7 +127,7 @@ class ThirdViewController: UIViewController {
             try? writeContext.save()
         }
     }
-    
+
     // инициализируем  tableView
     private func initTableView() {
         tableView.delegate = self
@@ -146,8 +142,8 @@ class ThirdViewController: UIViewController {
         navigationItem.title = "Корзина"
         navigationController?.navigationBar.barTintColor = UIColor(#colorLiteral(red: 0.5601426959, green: 0.8468149304, blue: 0.9041565061, alpha: 1))
     }
-    
-    func initViewModel() {
+
+    private func initViewModel() {
         viewModel.search()
         viewModel.reloadTableView = { [weak self] in
             DispatchQueue.main.async { [self] in
@@ -156,7 +152,7 @@ class ThirdViewController: UIViewController {
             }
         }
     }
-    
+
     // создаем constraint и добавляем Subview
     private func setupLayout() {
         [imageOfCart,
@@ -170,11 +166,11 @@ class ThirdViewController: UIViewController {
             imageOfCart.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             imageOfCart.heightAnchor.constraint(equalToConstant: 200),
             imageOfCart.widthAnchor.constraint(equalToConstant: 200),
-            
-            emptyCart.topAnchor.constraint(equalTo: imageOfCart.bottomAnchor , constant: 10),
+
+            emptyCart.topAnchor.constraint(equalTo: imageOfCart.bottomAnchor, constant: 10),
             emptyCart.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 10),
             emptyCart.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            
+
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),

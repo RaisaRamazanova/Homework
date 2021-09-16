@@ -14,7 +14,7 @@ final class NewStack {
 
     let conainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "CoreData")
-        container.loadPersistentStores { desc, error in
+        container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError(error.localizedDescription)
             }
@@ -24,4 +24,3 @@ final class NewStack {
 
     private init() {}
 }
-

@@ -8,13 +8,13 @@
 import Foundation
 
 protocol JsonServiceProtocol {
-    func getJsons(completion: @escaping (_ success: Bool, _ results: [JsonData]?, _ error: String?) -> ())
+    func getJsons(completion: @escaping (_ success: Bool, _ results: [JsonData]?, _ error: String?) -> Void)
 }
 
-class JsonService: JsonServiceProtocol {
+final class JsonService: JsonServiceProtocol {
     // MARK: - functions
-    
-    func getJsons(completion: @escaping (Bool, [JsonData]?, String?) -> ()) {
+
+    func getJsons(completion: @escaping (Bool, [JsonData]?, String?) -> Void) {
         HttpRequestHelper().GET(url: "https://raw.githubusercontent.com/RaisaRamazanova/TestPryaniky/main/Contents.json", params: ["": ""], httpHeader: .application_json) { success, data in
             if success {
                 do {

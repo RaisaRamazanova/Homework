@@ -14,8 +14,10 @@ protocol ActivityIndicatorProtocol {
 }
 
 final class ActivityIndicatorViewController: UIViewController, ActivityIndicatorProtocol {
-        
+
     private var activityIndicator = UIActivityIndicatorView(style: .large)
+
+    //  MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,8 @@ final class ActivityIndicatorViewController: UIViewController, ActivityIndicator
         activityIndicator.startAnimating()
     }
     
+    // MARK: - function
+    
     // Презентует модально поверх всего экрана полупрозрачный вью контроллер с работающим активити индикатором:
     static func startAnimating(in viewController: UIViewController) {
         DispatchQueue.main.async {
@@ -34,13 +38,13 @@ final class ActivityIndicatorViewController: UIViewController, ActivityIndicator
             viewController.navigationController?.present(activityVC, animated: false, completion: nil)
         }
     }
-    
+
     static func stopAnimating(in viewController: UIViewController) {
         if viewController.navigationController?.presentedViewController is ActivityIndicatorViewController {
             viewController.navigationController?.dismiss(animated: false, completion: nil)
         }
     }
-    
+
     // Выключает анимацию активити индикатора на корневом вью
     static func stopAnimating() {
         DispatchQueue.main.async {

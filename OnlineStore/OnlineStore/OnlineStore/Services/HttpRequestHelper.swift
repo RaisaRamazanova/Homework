@@ -15,8 +15,8 @@ enum HTTPHeaderFields {
 
 class HttpRequestHelper {
     // MARK: - functions
-    
-    func GET(url: String, params: [String: String], httpHeader: HTTPHeaderFields, complete: @escaping (Bool, Data?) -> ()) {
+
+    func GET(url: String, params: [String: String], httpHeader: HTTPHeaderFields, complete: @escaping (Bool, Data?) -> Void) {
         guard var components = URLComponents(string: url) else {
             print("Error: cannot create URLCompontents")
             return

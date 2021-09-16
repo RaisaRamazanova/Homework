@@ -8,22 +8,24 @@
 import UIKit
 import CoreData
 
-class CoreDataViewModel: NSObject {
-    
+final class CoreDataViewModel: NSObject {
     // MARK: - properties
     
-    private let stack = NewStack.shared
     lazy var viewContext = stack.conainer.viewContext
     var reloadTableView: (() -> Void)?
-    var coreDataCellViewModels = [CellViewModel]()
-    {
+    var coreDataCellViewModels = [CellViewModel]() {
         didSet {
             reloadTableView?()
         }
     }
+    private let stack = NewStack.shared
 
     // MARK: - functions
-
+    
+    func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
+        return coreDataCellViewModels[indexPath.row]
+    }
+    
     func search() {
         viewContext.performAndWait {
             coreDataCellViewModels.removeAll()
@@ -45,16 +47,12 @@ class CoreDataViewModel: NSObject {
             }
         }
     }
-    
-    func loadImage(url: URL) -> UIImage {
+
+    private func loadImage(url: URL) -> UIImage {
         var image = UIImage()
         if let data = try? Data(contentsOf: url) {
             image = UIImage(data: data) ?? UIImage(systemName: "person")!
         }
         return image
-    }
-    
-    func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
-        return coreDataCellViewModels[indexPath.row]
     }
 }
