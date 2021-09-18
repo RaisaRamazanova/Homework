@@ -59,3 +59,8 @@
 ### Нажав на одну вещь в каталоге или корзине открывается детальный экран, который скролится 
 
 <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.07.jpeg" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.05.jpeg" width="200" />
+
+ ## Какая архитектура?
+  Вначале я реализовывала MVC, однако после некоторые controller-ы стали слишком "толстыми" и я отделила логику в ModelView 
+  
+  Так реализованы DetailViewController и SecondViewController
