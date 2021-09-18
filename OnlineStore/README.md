@@ -34,7 +34,7 @@
 
 При запуске приложения мы попадаем сразу в **каталог** 
 
-<img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.27.jpeg?token=APSVBYGDFE3AZBTPJYHVAL3BIZU46" width="200" />
+<img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.27.jpeg?token=APSVBYGGM3J7EO37PLE6P7TBIZWNY" width="200" />
 
  Второй экран - это **вход в личный кабинет**
  
