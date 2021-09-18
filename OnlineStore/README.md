@@ -32,18 +32,18 @@
 ## Логика приложения и экранов 
 Вся история начинается с TabBar с 3-мя табами
 
-При запуске приложения мы попадаем сразу в **каталог** 
+### При запуске приложения мы попадаем сразу в **каталог** 
 
 <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.27.jpeg?token=APSVBYGGM3J7EO37PLE6P7TBIZWNY" width="200" />
 
- Второй экран - это **вход в личный кабинет**
+### Второй экран - это **вход в личный кабинет**
  
  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.03.jpeg?token=APSVBYEOVHZN36ZFK42PS63BIZWUU" width="200" />
  
- Из экрана входа в личного кабинет можно перейти на экран регистрации или на экран самого личного кабинета
+### Из экрана входа в личного кабинет можно перейти на **экран регистрации** или на экран самого **личного кабинета**
  
- <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.00.jpeg?token=APSVBYCGX3VUXKGXTXI2LHLBIZWHI" width="200" /> <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.49.jpeg?token=APSVBYF77T75ZUHI4EVZGFDBIZWSS" width="200" />
+<img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.49.jpeg?token=APSVBYF77T75ZUHI4EVZGFDBIZWSS" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.00.jpeg?token=APSVBYCGX3VUXKGXTXI2LHLBIZWHI" width="200" />
  
- Третий экран - это **корзина** 
+### Третий экран - это **корзина**
  
- <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.53.jpeg?token=APSVBYCRVRLHVULCN2EXFPTBIZV3Q" width="200" />
+ <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.53.jpeg?token=APSVBYCRVRLHVULCN2EXFPTBIZV3Q" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.58.jpeg?token=APSVBYFHBZ67D7IVEQJ37I3BIZXAE" width="200" /> <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.56.jpeg?token=APSVBYFRJEM7ZUNOA5Q24XLBIZXDK" width="200" />
