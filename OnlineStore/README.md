@@ -33,5 +33,4 @@
 Вся история начинается с TabBar с 3-мя табами
 При запуске приложения мы попадаем сразу в каталог 
 
-![cat](https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.27.jpeg?token=APSVBYGDFE3AZBTPJYHVAL3BIZU46)
 <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.27.jpeg?token=APSVBYGDFE3AZBTPJYHVAL3BIZU46" width="200" />
