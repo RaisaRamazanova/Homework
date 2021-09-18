@@ -42,8 +42,7 @@
  
  Из экрана входа в личного кабинет можно перейти на экран регистрации или на экран самого личного кабинета
  
- <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.00.jpeg?token=APSVBYCGX3VUXKGXTXI2LHLBIZWHI" width="200" />
- <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.49.jpeg?token=APSVBYF77T75ZUHI4EVZGFDBIZWSS" width="200" />
+ <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.00.jpeg?token=APSVBYCGX3VUXKGXTXI2LHLBIZWHI" width="200" /> <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.49.jpeg?token=APSVBYF77T75ZUHI4EVZGFDBIZWSS" width="200" />
  
  Третий экран - это **корзина** 
  
