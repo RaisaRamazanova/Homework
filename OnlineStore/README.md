@@ -49,9 +49,9 @@
 <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.49.jpeg?token=APSVBYF77T75ZUHI4EVZGFDBIZWSS" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.00.jpeg?token=APSVBYCGX3VUXKGXTXI2LHLBIZWHI" width="200" />
  
 ### Третий экран - это **корзина**
- 
+В ней можно удалять одежду по 1 шт или всю сразу 
  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.53.jpeg?token=APSVBYCRVRLHVULCN2EXFPTBIZV3Q" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.58.jpeg?token=APSVBYFHBZ67D7IVEQJ37I3BIZXAE" width="200" /> <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.33.56.jpeg?token=APSVBYFRJEM7ZUNOA5Q24XLBIZXDK" width="200" />
 
-### Нажав на одну вещь открывается детальный экран, который скролится 
+### Нажав на одну вещь в каталоге или корзине открывается детальный экран, который скролится 
 
 <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.07.jpeg" width="200" />  <img src="https://raw.githubusercontent.com/RaisaRamazanova/Homework/main/photo_2021-09-19%2001.34.05.jpeg" width="200" />
