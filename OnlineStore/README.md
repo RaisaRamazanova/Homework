@@ -32,4 +32,5 @@
 ## Логика приложения и экранов 
 Вся история начинается с TabBar с 3-мя табами
 При запуске приложения мы попадаем сразу в каталог 
-` hi `
+
+![cat](https://upload.wikimedia.org/wikipedia/commons/0/0e/Felis_silvestris_silvestris.jpg)
