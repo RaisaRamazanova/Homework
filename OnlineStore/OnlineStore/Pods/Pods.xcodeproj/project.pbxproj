@@ -3,21 +3,8 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
-
-/* Begin PBXAggregateTarget section */
-		52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */;
-			buildPhases = (
-			);
-			dependencies = (
-			);
-			name = SwiftLint;
-			productName = SwiftLint;
-		};
-/* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
 		17A7FB1FD06359F7912A594D02FCF951 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
@@ -38,20 +25,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 50010D627ABEBF65F2F3C0848416FC7E;
 			remoteInfo = "Pods-OnlineStore";
-		};
-		6777CBE5775200BFFF61C01F19A4E363 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
-			remoteInfo = SwiftLint;
-		};
-		9DECDCA9150CE7AD336362415A1A2C87 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 52B60EC2A583F24ACBB69C113F5488B9;
-			remoteInfo = SwiftLint;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -299,9 +272,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				544F0A85C3579A6BA21C5BD0D3912C17 /* PBXTargetDependency */,
 			);
 			name = "Pods-OnlineStore";
+			packageProductDependencies = (
+			);
 			productName = Pods_OnlineStore;
 			productReference = F315EAAB337C411DBBC9A6E90EA759E6 /* Pods-OnlineStore */;
 			productType = "com.apple.product-type.framework";
@@ -318,7 +292,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A17F6B2EAC41C0BE5BE1AC25DED20102 /* PBXTargetDependency */,
 			);
 			name = "Pods-OnlineStore-OnlineStoreUITests";
 			productName = Pods_OnlineStore_OnlineStoreUITests;
@@ -332,10 +305,10 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1240;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -343,6 +316,9 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			packageReferences = (
+				BB09E46326F7EF2600C14AF0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+			);
 			productRefGroup = 981C77E6AD9EF8697B3309067C515D8E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -350,7 +326,6 @@
 				50010D627ABEBF65F2F3C0848416FC7E /* Pods-OnlineStore */,
 				F6F57AC74BB3B955B7A3B710269B65CD /* Pods-OnlineStore-OnlineStoreUITests */,
 				29EEB529873B958FF046D4D0041B29C7 /* Pods-OnlineStoreTests */,
-				52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */,
 			);
 		};
 /* End PBXProject section */
@@ -407,18 +382,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		544F0A85C3579A6BA21C5BD0D3912C17 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftLint;
-			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = 6777CBE5775200BFFF61C01F19A4E363 /* PBXContainerItemProxy */;
-		};
-		A17F6B2EAC41C0BE5BE1AC25DED20102 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftLint;
-			target = 52B60EC2A583F24ACBB69C113F5488B9 /* SwiftLint */;
-			targetProxy = 9DECDCA9150CE7AD336362415A1A2C87 /* PBXContainerItemProxy */;
-		};
 		B8279D28793F6B00548F2D4C971E316E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-OnlineStore";
@@ -538,23 +501,6 @@
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		AD81E62ACCB0B7A923FC8AA288F9921E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7EAB1DA481EDDC005A251D3A5E6BE4CD /* SwiftLint.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -761,22 +707,6 @@
 			};
 			name = Debug;
 		};
-		EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EC0124719FE8EF5FDDD72C26F8A2F57 /* SwiftLint.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		F5ED5B751722DDEF4994B32E75DA404C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7D5B977716AE8A57443DDC1C6185F5E1 /* Pods-OnlineStore-OnlineStoreUITests.debug.xcconfig */;
@@ -826,15 +756,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE7B4FB01588B9E6DF09CB79FC7CE7BD /* Build configuration list for PBXAggregateTarget "SwiftLint" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EADD1F50ABC8096A0D6CB18822BB4EE4 /* Debug */,
-				AD81E62ACCB0B7A923FC8AA288F9921E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		E72215BD104780568DCE97DC9174B6BF /* Build configuration list for PBXNativeTarget "Pods-OnlineStoreTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -863,6 +784,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		BB09E46326F7EF2600C14AF0 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }

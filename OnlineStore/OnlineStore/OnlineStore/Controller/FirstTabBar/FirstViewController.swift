@@ -9,14 +9,16 @@ import UIKit
 
 final  class FirstViewController: UIViewController, UISearchBarDelegate {
 
-    // MARK: - Properties
+    // MARK: - private properties
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private let layout = UICollectionViewFlowLayout()
+    private lazy var searchBar = UISearchBar()
+
+    // MARK: - Properties
     let screenSize = UIScreen.main.bounds
-    let layout = UICollectionViewFlowLayout()
-    lazy var searchBar = UISearchBar()
     lazy var viewModel = {JsonViewModel()}()
 
-    //  MARK: - Life Cycle
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +80,8 @@ final  class FirstViewController: UIViewController, UISearchBarDelegate {
         searchBar.barTintColor = UIColor.white
     }
 
-    // задаем сonstraint для searchBar и tableView
+    // задаем сonstraint для searchBar и collectionView
     private func setupLayout() {
-        print(searchBar.frame.height)
         [collectionView,
          searchBar].forEach {
             view.addSubview($0)

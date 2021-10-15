@@ -10,16 +10,6 @@ import UIKit
 final class CustomTableViewCell: UITableViewCell {
 
     // MARK: - Properties
-    
-    var cellViewModel: CellViewModel? {
-        didSet {
-            setupLayout()
-            clothesLabelAndDescription.text = cellViewModel!.description + " " + cellViewModel!.title
-            clothesCount.text = "Количество: " + String(cellViewModel?.count ?? 1) + " шт."
-            clothesPrice.text = String( Int(cellViewModel!.price)! * cellViewModel!.count )  + " ₽"
-            imageOfClothes.image = cellViewModel?.image?.image
-        }
-    }
 
     private let clothesLabelAndDescription: UILabel = {
         let label = UILabel()
@@ -53,7 +43,7 @@ final class CustomTableViewCell: UITableViewCell {
         return view
     }()
 
-    //  MARK: - Life Cycle
+    // MARK: - Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -68,6 +58,14 @@ final class CustomTableViewCell: UITableViewCell {
     }
 
     // MARK: - function
+    
+    func transferCellData(_ cellViewModel: CellViewModel) {
+        setupLayout()
+        clothesLabelAndDescription.text = cellViewModel.description + " " + cellViewModel.title
+        clothesCount.text = "Количество: " + String(cellViewModel.count) + " шт."
+        clothesPrice.text = String( Int(cellViewModel.price)! * cellViewModel.count )  + " ₽"
+        imageOfClothes.image = cellViewModel.image
+    }
 
     private func initView() {
         backgroundColor = .clear

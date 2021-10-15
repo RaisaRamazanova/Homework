@@ -8,8 +8,9 @@
 import UIKit
 
 final class JsonViewModel: NSObject {
+
     // MARK: - properties
-    
+
     private var jsonService: JsonServiceProtocol
     var reloadCollectionView: (() -> Void)?
     var jsonCellViewModels = [CellViewModel]() {
@@ -20,13 +21,13 @@ final class JsonViewModel: NSObject {
     var filterData: [CellViewModel] = []
 
     // MARK: - init
-    
+
     init(jsonService: JsonServiceProtocol = JsonService()) {
         self.jsonService = jsonService
     }
 
     // MARK: - functions
-    
+
     func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
         return jsonCellViewModels[indexPath.row]
     }
@@ -52,9 +53,8 @@ final class JsonViewModel: NSObject {
 
     private func createCellModel(datas: JsonData) -> CellViewModel {
         let title = datas.title
-        let image = UIImageView()
         let urlOfPlug = "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"
-        image.image = self.loadImage(url: (URL(string: datas.url) ?? URL(string: urlOfPlug))!)
+        let image = self.loadImage(url: (URL(string: datas.url) ?? URL(string: urlOfPlug))!)
         let price = datas.price
         let description = datas.description
         let gender = datas.gender

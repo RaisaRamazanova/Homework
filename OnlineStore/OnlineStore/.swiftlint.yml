@@ -1,0 +1,7 @@
+line_length:
+- 300 # warning
+function_body_length:
+- 100 # warning
+disabled_rules:
+- force_cast
+- identifier_name

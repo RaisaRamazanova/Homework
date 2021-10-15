@@ -9,8 +9,9 @@ import CoreData
 import UIKit
 
 final class ThirdViewController: UIViewController {
+
     // MARK: - Properties
-    
+
     private let stack = NewStack.shared
     private let emptyCart: UILabel = {
         let label = UILabel()
@@ -35,7 +36,7 @@ final class ThirdViewController: UIViewController {
     lazy var tableView = UITableView(frame: .zero)
     lazy var writeContext = stack.conainer.viewContext
 
-    //  MARK: - Life Cycle
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

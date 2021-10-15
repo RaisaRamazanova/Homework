@@ -1,13 +1,11 @@
 {
   "images" : [
     {
-      "filename" : "icons8-солнце-40.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "icons8-солнце-60.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
@@ -23,25 +21,21 @@
       "size" : "29x29"
     },
     {
-      "filename" : "icons8-солнце-80.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "icons8-солнце-121.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "icons8-солнце-120.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "icons8-солнце-180.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
@@ -52,7 +46,6 @@
       "size" : "20x20"
     },
     {
-      "filename" : "icons8-солнце-42.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
@@ -68,19 +61,16 @@
       "size" : "29x29"
     },
     {
-      "filename" : "icons8-солнце-41.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "icons8-солнце-81.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "icons8-солнце-76.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"

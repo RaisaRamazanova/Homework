@@ -10,16 +10,6 @@ import UIKit
 final class CustomCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Properties
-    
-    var cellViewModel: CellViewModel? {
-        didSet {
-            setupLayout()
-            clothesLabel.text = cellViewModel?.title
-            clothesDescription.text = cellViewModel?.description
-            clothesPrice.text = cellViewModel!.price + " ₽"
-            imageOfClothes.image = cellViewModel?.image?.image
-        }
-    }
 
     private let clothesLabel: UILabel = {
         let label = UILabel()
@@ -53,11 +43,12 @@ final class CustomCollectionViewCell: UICollectionViewCell {
         return view
     }()
 
-    //  MARK: - Life Cycle
+    // MARK: - Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
+        setupLayout()
     }
 
     override func prepareForReuse() {
@@ -66,32 +57,33 @@ final class CustomCollectionViewCell: UICollectionViewCell {
         clothesDescription.text = nil
         clothesPrice.text = nil
     }
-
+    
     // MARK: - function
-
+    
+    func transferCellData(_ cellViewModel: CellViewModel) {
+        setupLayout()
+        clothesLabel.text = cellViewModel.title
+        clothesDescription.text = cellViewModel.description
+        clothesPrice.text = cellViewModel.price + " ₽"
+        imageOfClothes.image = cellViewModel.image
+    }
+    
     private func initView() {
         backgroundColor = .clear
         preservesSuperviewLayoutMargins = false
         layoutMargins = UIEdgeInsets.zero
     }
 
-    // MARK: - function
-
     // создаем constraint и добавляем Subview
     private func setupLayout() {
-        [imageOfClothes,
-         clothesLabel,
+        setupLayoutImageOfClothes()
+        [clothesLabel,
          clothesDescription,
          clothesPrice].forEach {
             contentView.addSubview($0)
             $0.toAutoLayout()
         }
         NSLayoutConstraint.activate([
-            imageOfClothes.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageOfClothes.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageOfClothes.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageOfClothes.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -70),
-
             clothesPrice.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -35),
             clothesPrice.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             clothesPrice.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
@@ -103,6 +95,19 @@ final class CustomCollectionViewCell: UICollectionViewCell {
             clothesDescription.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
             clothesDescription.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             clothesDescription.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupLayoutImageOfClothes() {
+        [imageOfClothes].forEach {
+            contentView.addSubview($0)
+            $0.toAutoLayout()
+        }
+        NSLayoutConstraint.activate([
+            imageOfClothes.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageOfClothes.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageOfClothes.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageOfClothes.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -70)
         ])
     }
 }

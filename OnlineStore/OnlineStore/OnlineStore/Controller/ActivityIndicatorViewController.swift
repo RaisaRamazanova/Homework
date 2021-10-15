@@ -17,22 +17,27 @@ final class ActivityIndicatorViewController: UIViewController, ActivityIndicator
 
     private var activityIndicator = UIActivityIndicatorView(style: .large)
 
-    //  MARK: - Life Cycle
-    
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.alpha = 1
         view.addSubview(activityIndicator)
-        activityIndicator.center = view.center
+        
         activityIndicator.color = .gray
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+        activityIndicator.center = view.center
         activityIndicator.startAnimating()
     }
-    
+
     // MARK: - function
-    
+
     // Презентует модально поверх всего экрана полупрозрачный вью контроллер с работающим активити индикатором:
     static func startAnimating(in viewController: UIViewController) {
         DispatchQueue.main.async {
+            
+//            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+
             let activityVC = ActivityIndicatorViewController()
             activityVC.modalPresentationStyle = .overFullScreen
             viewController.navigationController?.present(activityVC, animated: false, completion: nil)

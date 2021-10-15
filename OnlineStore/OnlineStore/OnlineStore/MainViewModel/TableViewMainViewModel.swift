@@ -9,8 +9,9 @@ import UIKit
 import CoreData
 
 final class CoreDataViewModel: NSObject {
+
     // MARK: - properties
-    
+
     lazy var viewContext = stack.conainer.viewContext
     var reloadTableView: (() -> Void)?
     var coreDataCellViewModels = [CellViewModel]() {
@@ -21,11 +22,11 @@ final class CoreDataViewModel: NSObject {
     private let stack = NewStack.shared
 
     // MARK: - functions
-    
+
     func getCellViewModel(at indexPath: IndexPath) -> CellViewModel {
         return coreDataCellViewModels[indexPath.row]
     }
-    
+
     func search() {
         viewContext.performAndWait {
             coreDataCellViewModels.removeAll()
@@ -35,8 +36,7 @@ final class CoreDataViewModel: NSObject {
             for res in result! {
                 data.title = res.title!
                 data.description = res.clothesDescription!
-                let image = UIImageView()
-                image.image = self.loadImage(url: (URL(string: res.url!) ?? URL(string: "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"))!)
+                let image = self.loadImage(url: (URL(string: res.url!) ?? URL(string: "https://www.meme-arsenal.com/memes/15ef8d1ccbb4514e0a758c61e1623b2f.jpg"))!)
                 data.image = image
                 data.price = res.price!
                 data.count = Int(res.count)

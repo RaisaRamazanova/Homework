@@ -17,7 +17,7 @@ extension FirstViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: CustomCollectionViewCell.self), for: indexPath) as! CustomCollectionViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
-        cell.cellViewModel = cellVM
+        cell.transferCellData(cellVM)
         cell.backgroundColor = .white
         return cell
     }

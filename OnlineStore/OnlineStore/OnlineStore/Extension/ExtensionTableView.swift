@@ -50,7 +50,7 @@ extension ThirdViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: CustomTableViewCell.self), for: indexPath) as! CustomTableViewCell
         let cellVM = viewModel.getCellViewModel(at: indexPath)
-        cell.cellViewModel = cellVM
+        cell.transferCellData(cellVM)
         cell.backgroundColor = UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         return cell
     }
